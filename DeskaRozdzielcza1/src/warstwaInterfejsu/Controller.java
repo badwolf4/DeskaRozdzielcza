@@ -140,10 +140,53 @@ public class Controller {
     		lewaStrzalka.setFill(Color.GREEN);
         } );
         
-        
+        przebiegCalkowity.setEditable(false);
+        przebiegCalkowity.setDisable(true);
+        czasPodrorzy.setEditable(false);
+        czasPodrorzy.setDisable(true);
+        przebiegDzienny.setEditable(false);
+        przebiegDzienny.setDisable(true);
+        dystans.setEditable(false);
+        dystans.setDisable(true);
+        spalanie.setEditable(false);
+        spalanie.setDisable(true);
+        srednia.setEditable(false);
+        srednia.setDisable(true);
+        maksymalna.setEditable(false);
+        maksymalna.setDisable(true);
+        predkosc.setEditable(false);
+        predkosc.setDisable(true);
         
         refreash();
         //if(deska.getSwiatlo(4).getWlaczona())
+        
+        Timer t1 = new Timer();
+        t1.scheduleAtFixedRate(new TimerTask() {
+
+		    @Override
+		    public void run() {
+		        //Called each time when 1000 milliseconds (1 second) (the period parameter)
+//		    	if(lewaStrzalka.getFill()==Color.WHITE) {
+//	    			lewaStrzalka.setFill(Color.GREEN);
+//	        	}
+//	        	else lewaStrzalka.setFill(Color.WHITE);
+//		    	
+//		    	counter++;
+//		    	if(counter == 10)
+//		    		{
+//		    			t1.cancel();
+//		    			t1.purge();
+//		    		}
+		    	deska.getKomputerPokladowy().setCzasPodrozy(deska.getKomputerPokladowy().getCzasPodrozy()+0.01);
+		    	refreash();
+		    }
+
+		},
+		//Set how long before to start calling the TimerTask (in milliseconds)
+		0,
+		//Set the amount of time between each execution (in milliseconds)
+		100);
+        
         	
     }
     
@@ -309,36 +352,27 @@ public class Controller {
     void refreash()
     {
     	przebiegCalkowity.setText(Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
-        przebiegCalkowity.setEditable(false);
-        przebiegCalkowity.setDisable(true);
         
         przebiegDzienny.setText(Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
-        przebiegDzienny.setEditable(false);
-        przebiegDzienny.setDisable(true);
+        
         
         czasPodrorzy.setText(Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()));
-        czasPodrorzy.setEditable(false);
-        czasPodrorzy.setDisable(true);
+        
         
         dystans.setText(Double.toString(deska.getKomputerPokladowy().getDystans()));
-        dystans.setEditable(false);
-        dystans.setDisable(true);
+       
  
         spalanie.setText(Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie()));
-        spalanie.setEditable(false);
-        spalanie.setDisable(true);
+        
         
         srednia.setText(Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()));
-        srednia.setEditable(false);
-        srednia.setDisable(true);
+        
         
         maksymalna.setText(Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
-        maksymalna.setEditable(false);
-        maksymalna.setDisable(true);
+        
         
         predkosc.setText(Double.toString(deska.getPredkosciomierz().getPredkosc()));
-        predkosc.setEditable(false);
-        predkosc.setDisable(true);
+        
         
 //        if(deska.getSwiatlo(0).getWlaczona())
 //        	circle1.setFill(Color.BLUE);
