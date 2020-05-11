@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<deska_rozdzielcza>
+	<predkosc>20</predkosc>
+	<przebieg_calkowity>50.0</przebieg_calkowity>
+	<przebieg_dzienny>10.0</przebieg_dzienny>
+	<lewy_kierunkowskaz>wylaczony</lewy_kierunkowskaz>
+	<prawy_kierunkowskaz>wylaczony</prawy_kierunkowskaz>
+	<kontrolka_swiatel_pozycyjnych>wylaczony</kontrolka_swiatel_pozycyjnych>
+	<kontrolka_swiatel_mijania>wylaczony</kontrolka_swiatel_mijania>
+	<kontrolka_swiatel_drogowych>wylaczony</kontrolka_swiatel_drogowych>
+	<kontrolka_swiatel_przeciwmgielnych_przod>wylaczony</kontrolka_swiatel_przeciwmgielnych_przod>
+	<kontrolka_swiatel_przeciwmgielnych_tyl>wylaczony</kontrolka_swiatel_przeciwmgielnych_tyl>
+	<komputer_pokladowy>
+		<predkosc_srednia>10.0</predkosc_srednia>
+		<predkosc_maksymalna>20.0</predkosc_maksymalna>
+		<czas_podrozy>30.0</czas_podrozy>
+		<dystans>40.0</dystans>
+		<srednie_spalanie>50.0</srednie_spalanie>
+	</komputer_pokladowy>
+</deska_rozdzielcza>

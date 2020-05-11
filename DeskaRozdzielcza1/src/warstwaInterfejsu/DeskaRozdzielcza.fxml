@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane onKeyPressed="#handleOnKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warstwaInterfejsu.Controller">
+   <children>
+      <AnchorPane layoutX="-2.0" layoutY="76.0" prefHeight="427.0" prefWidth="900.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <AnchorPane layoutY="195.0" prefHeight="232.0" prefWidth="907.0" style="-fx-background-color: #2E3348;">
+               <children>
+                  <AnchorPane layoutX="52.0" layoutY="79.0" prefHeight="131.0" prefWidth="190.0" style="-fx-background-color: #fafafa;">
+                     <children>
+                        <Label layoutX="73.0" layoutY="34.0" text="Światło">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="23.0" layoutY="88.0" text="Drogowe">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="circle1" fill="#fafafa" layoutX="52.0" layoutY="70.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="123.0" layoutY="88.0" text="Mijania">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="circle2" fill="#fafafa" layoutX="147.0" layoutY="70.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="654.0" layoutY="79.0" prefHeight="131.0" prefWidth="190.0" style="-fx-background-color: #fafafa;">
+                     <children>
+                        <Label layoutX="20.0" layoutY="35.0" text="Światło Przeciwmgelne">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="88.0" text="Przód">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="circle11" fill="#fafafa" layoutX="52.0" layoutY="69.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="137.0" layoutY="88.0" text="Tył">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="circle22" fill="#fafafa" layoutX="147.0" layoutY="69.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="firstButton" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" text="1" />
+                  <Button fx:id="secondButton" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="2" />
+                  <Button fx:id="firstButton2" layoutX="864.0" layoutY="126.0" mnemonicParsing="false" text="1" />
+                  <Button fx:id="secondButton2" layoutX="864.0" layoutY="168.0" mnemonicParsing="false" text="2" />
+                  <Polyline fx:id="lewaStrzalka" fill="#fafafa" layoutX="137.0" layoutY="33.0" rotate="90.0" scaleX="0.5" scaleY="0.5" strokeType="INSIDE">
+                    <points>
+                      <Double fx:value="-50.0" />
+                      <Double fx:value="-40.0" />
+                      <Double fx:value="50.0" />
+                      <Double fx:value="-40.0" />
+                      <Double fx:value="0.0" />
+                      <Double fx:value="60.0" />
+                      <Double fx:value="-50.0" />
+                      <Double fx:value="-40.0" />
+                    </points>
+                  </Polyline>
+                  <Polyline fx:id="prawaStrzalka" fill="#fafafa" layoutX="761.0" layoutY="33.0" rotate="270.0" scaleX="0.5" scaleY="0.5" strokeType="INSIDE">
+                     <points>
+                        <Double fx:value="-50.0" />
+                        <Double fx:value="-40.0" />
+                        <Double fx:value="50.0" />
+                        <Double fx:value="-40.0" />
+                        <Double fx:value="0.0" />
+                        <Double fx:value="60.0" />
+                        <Double fx:value="-50.0" />
+                        <Double fx:value="-40.0" />
+                     </points>
+                  </Polyline>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="308.0" layoutY="74.0" prefHeight="353.0" prefWidth="292.0" style="-fx-background-color: #2E3348;">
+               <children>
+                  <Label layoutX="28.0" layoutY="22.0" text="Komputer Pokładowy" textFill="#fafafa">
+                     <font>
+                        <Font name="Yu Gothic Regular" size="24.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="30.0" layoutY="87.0" prefHeight="239.0" prefWidth="232.0" style="-fx-background-color: #fafafa;">
+                     <children>
+                        <Label layoutX="13.0" layoutY="14.0" text="Przebieg">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="13.0" layoutY="46.0" text="Przebieg Dzienny">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="13.0" layoutY="77.0" text="Czas Podróży">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="112.0" text="Dystans">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="170.0" text="Spalanie">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="przebiegCalkowity" layoutX="132.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
+                        <TextField fx:id="przebiegDzienny" layoutX="132.0" layoutY="42.0" prefHeight="25.0" prefWidth="87.0" />
+                        <TextField fx:id="czasPodrorzy" layoutX="132.0" layoutY="73.0" prefHeight="25.0" prefWidth="87.0" />
+                        <TextField fx:id="dystans" layoutX="132.0" layoutY="107.0" prefHeight="25.0" prefWidth="87.0" />
+                        <TextField fx:id="spalanie" layoutX="132.0" layoutY="166.0" prefHeight="25.0" prefWidth="87.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Label layoutX="80.0" layoutY="121.0" text="Prędkość">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <Label layoutX="649.0" layoutY="44.0" text="Średnia">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="649.0" layoutY="121.0" text="Maksymalna">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="srednia" layoutX="773.0" layoutY="25.0" prefHeight="69.0" prefWidth="102.0" text="0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="maksymalna" layoutX="773.0" layoutY="102.0" prefHeight="69.0" prefWidth="102.0" text="0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="predkosc" layoutX="75.0" layoutY="20.0" prefHeight="108.0" prefWidth="150.0" text="0">
+               <font>
+                  <Font size="51.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <Label layoutX="298.0" layoutY="14.0" prefHeight="52.0" prefWidth="327.0" text="Deska Rozdzielcza" textFill="#fafafa">
+         <font>
+            <Font name="Yu Gothic Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
