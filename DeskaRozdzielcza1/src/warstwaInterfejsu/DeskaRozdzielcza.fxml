@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warstwaInterfejsu.Controller">
+<AnchorPane onKeyPressed="#handleOnKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warstwaInterfejsu.Controller">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="76.0" prefHeight="427.0" prefWidth="900.0" style="-fx-background-color: #fafafa;">
          <children>
@@ -17,6 +17,7 @@
                <children>
                   <AnchorPane layoutX="52.0" layoutY="79.0" prefHeight="131.0" prefWidth="190.0" style="-fx-background-color: #fafafa;">
                      <children>
+                     
                         <Label layoutX="73.0" layoutY="34.0" text="Światło">
                            <font>
                               <Font name="Yu Gothic Regular" size="14.0" />
@@ -164,6 +165,7 @@
             </TextField>
          </children>
       </AnchorPane>
+      <Button fx:id="informationButton" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" text="Informacja o programie" />
       <Label layoutX="298.0" layoutY="14.0" prefHeight="52.0" prefWidth="327.0" text="Deska Rozdzielcza" textFill="#fafafa">
          <font>
             <Font name="Yu Gothic Bold" size="36.0" />

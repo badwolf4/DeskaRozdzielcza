@@ -26,6 +26,10 @@ public class Predkosciomierz {
 			throw new OsiagnietaMinimalnaSzybkoscException();
 		predkosc--;
 	}
-	
+	public void bardzoZwolnij() throws OsiagnietaMinimalnaSzybkoscException {
+		if(predkosc==0 || (predkosc-5)<0) 
+			throw new OsiagnietaMinimalnaSzybkoscException();
+		predkosc-=5;
+	}
 
 }
