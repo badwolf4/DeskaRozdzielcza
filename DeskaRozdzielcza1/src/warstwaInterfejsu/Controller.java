@@ -30,30 +30,21 @@ public class Controller {
 
     @FXML
     private URL location;
-
-    @FXML
-    private Button firstButton;
     
     @FXML
-    private Button secondButton;
-  
-    @FXML
-    private Button firstButton2;
+    private Circle swiatloDrogowe;
     
     @FXML
-    private Button secondButton2;
+    private Circle swiatloMijania;
     
     @FXML
-    private Circle circle1;
+    private Circle swiatloPrzod;
     
     @FXML
-    private Circle circle2;
+    private Circle swiatloTyl;
     
     @FXML
-    private Circle circle11;
-    
-    @FXML
-    private Circle circle22;
+    private Circle swiatloPozycyjne;
     
     @FXML
     private Polyline lewaStrzalka;
@@ -102,44 +93,7 @@ public class Controller {
     	
     	deska = xmlInterpretor.odczytaj("state.xml");
     	
-    	//0
-        firstButton.setOnAction(event ->{
-        	if(circle1.getFill()==Color.BLUE) {
-        		circle1.setFill(Color.WHITE);
-        	}
-        	else circle1.setFill(Color.BLUE);
-        	System.out.println("blue");
-        } );
-        
-        //1
-        secondButton.setOnAction(event ->{
-        	if(circle2.getFill()==Color.YELLOW) {
-        		circle2.setFill(Color.WHITE);
-        	}
-        	else circle2.setFill(Color.YELLOW);
-        	System.out.println("YELLOW");
-        } );
-        
-        //2
-        firstButton2.setOnAction(event ->{
-        	if(circle11.getFill()==Color.BLUE) {
-        		circle11.setFill(Color.WHITE);
-        	}
-        	else circle11.setFill(Color.BLUE);
-        	System.out.println("blue");
-        	lewaStrzalka.setFill(Color.WHITE);
-        } );
-        
-        //3
-        secondButton2.setOnAction(event ->{
-        	if(circle22.getFill()==Color.YELLOW) {
-        		circle22.setFill(Color.WHITE);
-        	}
-        	else circle22.setFill(Color.YELLOW);
-        	System.out.println("YELLOW");
-    		lewaStrzalka.setFill(Color.GREEN);
-        } );
-        
+    	
         przebiegCalkowity.setEditable(false);
         przebiegCalkowity.setDisable(true);
         czasPodrorzy.setEditable(false);
@@ -306,10 +260,10 @@ public class Controller {
     	//swiatla
     	if (event.getCode() == KeyCode.Q) {
     		System.out.println("Q pressed");
-    		if(circle1.getFill()==Color.BLUE) {
-        		circle1.setFill(Color.WHITE);
+    		if(swiatloDrogowe.getFill()==Color.BLUE) {
+        		swiatloDrogowe.setFill(Color.WHITE);
         	}
-        	else circle1.setFill(Color.BLUE);
+        	else swiatloDrogowe.setFill(Color.BLUE);
 //    		if(deska.getSwiatlo(0).getWlaczona())
 //    			deska.getSwiatlo(0).wylacz();
 //    		else
@@ -319,28 +273,28 @@ public class Controller {
     	
     	if (event.getCode() == KeyCode.E) {
     		System.out.println("E pressed");
-    		if(circle2.getFill()==Color.YELLOW) {
-        		circle2.setFill(Color.WHITE);
+    		if(swiatloMijania.getFill()==Color.YELLOW) {
+        		swiatloMijania.setFill(Color.WHITE);
         	}
-        	else circle2.setFill(Color.YELLOW);
+        	else swiatloMijania.setFill(Color.YELLOW);
         	System.out.println("YELLOW");
     	}
     	
     	if (event.getCode() == KeyCode.Z) {
     		System.out.println("Z pressed");
-    		if(circle11.getFill()==Color.BLUE) {
-        		circle11.setFill(Color.WHITE);
+    		if(swiatloPrzod.getFill()==Color.BLUE) {
+        		swiatloPrzod.setFill(Color.WHITE);
         	}
-        	else circle11.setFill(Color.BLUE);
+        	else swiatloPrzod.setFill(Color.BLUE);
         	System.out.println("blue");
     	}
     	
     	if (event.getCode() == KeyCode.C) {
     		System.out.println("C pressed");
-    		if(circle22.getFill()==Color.YELLOW) {
-        		circle22.setFill(Color.WHITE);
+    		if(swiatloTyl.getFill()==Color.YELLOW) {
+        		swiatloTyl.setFill(Color.WHITE);
         	}
-        	else circle22.setFill(Color.YELLOW);
+        	else swiatloTyl.setFill(Color.YELLOW);
         	System.out.println("YELLOW");
     	}
     	
@@ -375,21 +329,21 @@ public class Controller {
         
         
 //        if(deska.getSwiatlo(0).getWlaczona())
-//        	circle1.setFill(Color.BLUE);
+//        	swiatloDrogowe.setFill(Color.BLUE);
 //        else
-//        	circle1.setFill(Color.WHITE);
+//        	swiatloDrogowe.setFill(Color.WHITE);
 //        if(deska.getSwiatlo(1).getWlaczona())
-//        	circle2.setFill(Color.YELLOW);
+//        	swiatloMijania.setFill(Color.YELLOW);
 //        else
-//        	circle2.setFill(Color.WHITE);
+//        	swiatloMijania.setFill(Color.WHITE);
 //        if(deska.getSwiatlo(2).getWlaczona())
-//        	circle11.setFill(Color.BLUE);
+//        	swiatloPrzod.setFill(Color.BLUE);
 //        else
-//        	circle11.setFill(Color.WHITE);
+//        	swiatloPrzod.setFill(Color.WHITE);
 // 		if(deska.getSwiatlo(3).getWlaczona())
-// 			circle22.setFill(Color.YELLOW);
+// 			swiatloTyl.setFill(Color.YELLOW);
 // 		else
-// 			circle22.setFill(Color.WHITE);
+// 			swiatloTyl.setFill(Color.WHITE);
     }
     
 }
