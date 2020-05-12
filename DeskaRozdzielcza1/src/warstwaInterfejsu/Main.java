@@ -17,13 +17,6 @@ public class Main extends Application {
 			System.out.println("Deska Rozdzielcza Samochodu");
 			primaryStage.setScene(new Scene(root, 900, 500));
 			primaryStage.show();
-//			primaryStage.getScene().setOnKeyPressed(e -> {
-//				if(e.getCode()==KeyCode.A)
-//				{
-//					System.out.println("A zostalo wcisniete");
-//					
-//				}
-//			});
 	}
 	
 	

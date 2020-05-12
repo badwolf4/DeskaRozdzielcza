@@ -132,9 +132,9 @@ public class Controller {
 
 		},
 		//Set how long before to start calling the TimerTask (in milliseconds)
-		0,
+		1000,
 		//Set the amount of time between each execution (in milliseconds)
-		100);
+		500);
         
        
         
@@ -157,7 +157,7 @@ public class Controller {
     	//TODO spalanie
     	//deska.getKomputerPokladowy().setSrednieSpalanie();
     }
-    
+   
     @FXML
     void handleOnKeyPressed(KeyEvent event) {
     	System.out.println("Klawisz wcisnieto");
@@ -250,6 +250,7 @@ public class Controller {
     	}
     	if (event.getCode() == KeyCode.UP)
     	{
+    		
     		try
     		{
     			deska.getPredkosciomierz().przyspiesz();
@@ -275,14 +276,14 @@ public class Controller {
     	//swiatla
     	if (event.getCode() == KeyCode.Q) {
     		System.out.println("Q pressed");
-    		if(swiatloDrogowe.getFill()==Color.BLUE) {
-        		swiatloDrogowe.setFill(Color.WHITE);
-        	}
-        	else swiatloDrogowe.setFill(Color.BLUE);
-//    		if(!deska.getSwiatlo(0).getWlaczona())
-//    			deska.getSwiatlo(0).wlacz();
-//    		if(deska.getSwiatlo(0).getWlaczona())
-//    			deska.getSwiatlo(0).wylacz();
+//    		if(swiatloDrogowe.getFill()==Color.BLUE) {
+//        		swiatloDrogowe.setFill(Color.WHITE);
+//        	}
+//        	else swiatloDrogowe.setFill(Color.BLUE);
+    		if(!deska.getSwiatlo(0).getWlaczona())
+    			deska.getSwiatlo(0).wlacz();
+    		if(deska.getSwiatlo(0).getWlaczona())
+    			deska.getSwiatlo(0).wylacz();
     	}
     	
     	if (event.getCode() == KeyCode.E) {
@@ -351,10 +352,11 @@ public class Controller {
         predkosc.setText(Double.toString(deska.getPredkosciomierz().getPredkosc()));
         
         
-//        if(deska.getSwiatlo(0).getWlaczona())
-//        	swiatloDrogowe.setFill(Color.BLUE);
-//        else 
-        	//swiatloDrogowe.setFill(Color.WHITE);
+        if(deska.getSwiatlo(0).getWlaczona())
+        	
+        	swiatloDrogowe.setFill(Color.BLUE);
+        else 
+        	swiatloDrogowe.setFill(Color.WHITE);
 //        if(deska.getSwiatlo(1).getWlaczona())
 //        	swiatloMijania.setFill(Color.YELLOW);
 //        else
