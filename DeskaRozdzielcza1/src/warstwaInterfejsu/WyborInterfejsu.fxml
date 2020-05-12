@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: fafafa;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warstwaInterfejsu.ControllerWejscia">
+   <children>
+      <AnchorPane prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: black;">
+         <children>
+            <Text fill="WHITE" layoutX="112.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deska Rozdzielcza">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <RadioButton fx:id="radioReadFromXML" layoutX="28.0" layoutY="122.0" mnemonicParsing="false" selected="true" text="Read from XML" />
+      <RadioButton fx:id="radioReadFromSQL" layoutX="150.0" layoutY="122.0" mnemonicParsing="false" text="Read from SQL" />
+      <Button fx:id="cancelButton" layoutX="334.0" layoutY="161.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="okButton" layoutX="270.0" layoutY="161.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="OK" />
+      <ComboBox fx:id="comboBox" layoutX="28.0" layoutY="88.0" prefWidth="150.0" promptText="GUI" />
+   </children>
+</AnchorPane>
