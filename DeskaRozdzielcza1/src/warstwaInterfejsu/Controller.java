@@ -81,12 +81,10 @@ public class Controller {
     
     private boolean lewyWlaczony = false;
     private boolean prawyWlaczony = false;
-  
-    
-    private int  counter = 0;
     
     private DeskaRozdzielcza deska;
     
+    private Timer t;
     
     @FXML
     void initialize() {
@@ -117,7 +115,8 @@ public class Controller {
         predkosc.setDisable(true);
         
         refreash();
-        //if(deska.getSwiatlo(4).getWlaczona())
+        
+        deska.start();
         
         Timer t1 = new Timer();
         t1.scheduleAtFixedRate(new TimerTask() {
@@ -125,8 +124,6 @@ public class Controller {
 		    @Override
 		    public void run() {
 		        //Called each time when 1000 milliseconds (1 second) (the period parameter)
-		    
-		    	onKomputerTimeValuesChanged();
 		    	refreash();
 		    }
 
@@ -134,42 +131,22 @@ public class Controller {
 		//Set how long before to start calling the TimerTask (in milliseconds)
 		1000,
 		//Set the amount of time between each execution (in milliseconds)
-		500);
+		1000);
         
-       
-        
-        //deska.getPredkosciomierz().zwolnij();
-    }
-    
-    void onKomputerTimeValuesChanged()
-    {
-    	double sekundy = 0.01;
-    	double godziny = sekundy/3600;
-    	double dystans = deska.getPredkosciomierz().getPredkosc() * godziny;
-    	
-    	deska.getKomputerPokladowy().setCzasPodrozy(deska.getKomputerPokladowy().getCzasPodrozy()+sekundy);
-    	deska.getKomputerPokladowy().setDystans(deska.getKomputerPokladowy().getDystans()+ dystans);
-    	deska.getLicznikPrzebieguCalkowitego().zwiekszPrzebieg(dystans);
-    	deska.getLicznikPrzebieguDziennego().zwiekszPrzebieg(dystans);
-    	deska.getKomputerPokladowy().setPredkoscSrednia(deska.getKomputerPokladowy().getDystans()/(deska.getKomputerPokladowy().getCzasPodrozy()/60));
-    	if(deska.getKomputerPokladowy().getPredkoscMaksymalna() < deska.getPredkosciomierz().getPredkosc())
-    		deska.getKomputerPokladowy().setPredkoscMaksymalna(deska.getPredkosciomierz().getPredkosc());
-    	//TODO spalanie
-    	//deska.getKomputerPokladowy().setSrednieSpalanie();
     }
    
     @FXML
     void handleOnKeyPressed(KeyEvent event) {
     	System.out.println("Klawisz wcisnieto");
     	//strzalki
-    	counter = 0;
     	
     	if (event.getCode() == KeyCode.LEFT) {
     		
     		//Declare the timer
-    		if(!lewyWlaczony)
+    		if(!lewyWlaczony && !prawyWlaczony)
     		{
-    			Timer t = new Timer();
+    			deska.getStrzalka(0).wlacz();
+    			 t = new Timer();
     			 
     			 lewyWlaczony = true;
     			 
@@ -186,12 +163,6 @@ public class Controller {
         	        	}
         	        	else lewaStrzalka.setFill(Color.WHITE);
         		    	
-        		    	counter++;
-        		    	if(counter == 10)
-        		    		{
-        		    			t.cancel();
-        		    			t.purge();
-        		    		}
         		    }
 
         		},
@@ -203,7 +174,19 @@ public class Controller {
         		lewaStrzalka.setFill(Color.WHITE);
     		}
     		
-    		 
+    		else
+    		{
+    			t.cancel();
+    			t.purge();
+    			deska.getStrzalka(0).wylacz();
+    			deska.getStrzalka(1).wylacz();
+    			prawyWlaczony = false;
+    			lewyWlaczony = false;
+    			lewaStrzalka.setFill(Color.WHITE);
+    			prawaStrzalka.setFill(Color.WHITE);
+   
+    		}
+    		
     		
     			
     		
@@ -211,9 +194,11 @@ public class Controller {
     	
     	if (event.getCode() == KeyCode.RIGHT) {
     		//Declare the timer
-    		if(!prawyWlaczony)
+    		if(!prawyWlaczony && !lewyWlaczony)
     		{
-    			Timer t = new Timer();
+    			deska.getStrzalka(1).wlacz();
+    			
+    			t = new Timer();
     			 
     			prawyWlaczony = true;
     			 
@@ -230,12 +215,6 @@ public class Controller {
         	        	}
         	        	else prawaStrzalka.setFill(Color.WHITE);
         		    	
-        		    	counter++;
-        		    	if(counter == 10)
-        		    		{
-        		    			t.cancel();
-        		    			t.purge();
-        		    		}
         		    }
 
         		},
@@ -246,6 +225,18 @@ public class Controller {
         		
         		prawaStrzalka.setFill(Color.WHITE);
         		
+    		}
+    		
+    		else
+    		{
+    			t.cancel();
+    			t.purge();
+    			deska.getStrzalka(0).wylacz();
+    			deska.getStrzalka(1).wylacz();
+    			prawyWlaczony = false;
+    			lewyWlaczony = false;
+    			lewaStrzalka.setFill(Color.WHITE);
+    			prawaStrzalka.setFill(Color.WHITE);
     		}
     	}
     	if (event.getCode() == KeyCode.UP)
@@ -276,49 +267,48 @@ public class Controller {
     	//swiatla
     	if (event.getCode() == KeyCode.Q) {
     		System.out.println("Q pressed");
-//    		if(swiatloDrogowe.getFill()==Color.BLUE) {
-//        		swiatloDrogowe.setFill(Color.WHITE);
-//        	}
-//        	else swiatloDrogowe.setFill(Color.BLUE);
     		if(!deska.getSwiatlo(0).getWlaczona())
     			deska.getSwiatlo(0).wlacz();
-    		if(deska.getSwiatlo(0).getWlaczona())
+    			
+    		else
     			deska.getSwiatlo(0).wylacz();
+    		
     	}
     	
     	if (event.getCode() == KeyCode.E) {
     		System.out.println("E pressed");
-    		if(swiatloMijania.getFill()==Color.YELLOW) {
-        		swiatloMijania.setFill(Color.WHITE);
-        	}
-        	else swiatloMijania.setFill(Color.YELLOW);
-        	System.out.println("YELLOW");
+    		if(!deska.getSwiatlo(1).getWlaczona())
+    			deska.getSwiatlo(1).wlacz();
+    			
+    		else
+    			deska.getSwiatlo(1).wylacz();
     	}
     	
     	if (event.getCode() == KeyCode.Z) {
     		System.out.println("Z pressed");
-    		if(swiatloPrzod.getFill()==Color.BLUE) {
-        		swiatloPrzod.setFill(Color.WHITE);
-        	}
-        	else swiatloPrzod.setFill(Color.BLUE);
-        	System.out.println("blue");
+    		if(!deska.getSwiatlo(2).getWlaczona())
+    			deska.getSwiatlo(2).wlacz();
+    			
+    		else
+    			deska.getSwiatlo(2).wylacz();
     	}
     	
     	if (event.getCode() == KeyCode.X) {
     		System.out.println("X pressed");
-    		if(swiatloTyl.getFill()==Color.YELLOW) {
-        		swiatloTyl.setFill(Color.WHITE);
-        	}
-        	else swiatloTyl.setFill(Color.YELLOW);
-        	System.out.println("YELLOW");
+    		if(!deska.getSwiatlo(3).getWlaczona())
+    			deska.getSwiatlo(3).wlacz();
+    			
+    		else
+    			deska.getSwiatlo(3).wylacz();
     	}
     	if(event.getCode()==KeyCode.C)
     	{
     		System.out.println("C pressed");
-    		if(swiatloPozycyjne.getFill()==Color.RED) {
-    			swiatloPozycyjne.setFill(Color.WHITE);
-        	}
-        	else swiatloPozycyjne.setFill(Color.RED);
+    		if(!deska.getSwiatlo(4).getWlaczona())
+    			deska.getSwiatlo(4).wlacz();
+    			
+    		else
+    			deska.getSwiatlo(4).wylacz();
     	}
     	
     	refreash();
@@ -353,22 +343,29 @@ public class Controller {
         
         
         if(deska.getSwiatlo(0).getWlaczona())
-        	
         	swiatloDrogowe.setFill(Color.BLUE);
         else 
         	swiatloDrogowe.setFill(Color.WHITE);
-//        if(deska.getSwiatlo(1).getWlaczona())
-//        	swiatloMijania.setFill(Color.YELLOW);
-//        else
-//        	swiatloMijania.setFill(Color.WHITE);
-//        if(deska.getSwiatlo(2).getWlaczona())
-//        	swiatloPrzod.setFill(Color.BLUE);
-//        else
-//        	swiatloPrzod.setFill(Color.WHITE);
-// 		if(deska.getSwiatlo(3).getWlaczona())
-// 			swiatloTyl.setFill(Color.YELLOW);
-// 		else
-// 			swiatloTyl.setFill(Color.WHITE);
+        
+        if(deska.getSwiatlo(1).getWlaczona())
+        	swiatloMijania.setFill(Color.YELLOW);
+        else
+        	swiatloMijania.setFill(Color.WHITE);
+        
+        if(deska.getSwiatlo(2).getWlaczona())
+        	swiatloPrzod.setFill(Color.BLUE);
+        else
+        	swiatloPrzod.setFill(Color.WHITE);
+        
+ 		if(deska.getSwiatlo(3).getWlaczona())
+ 			swiatloTyl.setFill(Color.YELLOW);
+ 		else
+ 			swiatloTyl.setFill(Color.WHITE);
+ 		
+ 		if(deska.getSwiatlo(4).getWlaczona())
+ 			swiatloPozycyjne.setFill(Color.RED);
+ 		else
+ 			swiatloPozycyjne.setFill(Color.WHITE);
     }
     
 }

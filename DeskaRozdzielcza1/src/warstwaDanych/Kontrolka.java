@@ -15,7 +15,7 @@ public class Kontrolka {
 	
 	public void zmienWlaczonaStan()
 	{
-		wlaczona= !wlaczona;
+		wlaczona = !wlaczona;
 	}
 
 }

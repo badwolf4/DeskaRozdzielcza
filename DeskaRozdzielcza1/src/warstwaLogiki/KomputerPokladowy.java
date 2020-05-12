@@ -21,6 +21,16 @@ public class KomputerPokladowy {
 		
 	}
 	
+	void refreashKomputer(double sekundy, double godziny, double dystans1, double predkosc)
+	{
+		
+		setCzasPodrozy(getCzasPodrozy()+sekundy);
+    	setDystans(getDystans()+ dystans1);
+    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/60));
+    	if(getPredkoscMaksymalna() < predkosc)
+    		setPredkoscMaksymalna(predkosc);
+	}
+	
 	public void setPredkoscSrednia(double p)
 	{
 		predkoscSrednia = p;

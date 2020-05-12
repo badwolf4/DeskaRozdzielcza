@@ -1,5 +1,7 @@
 package warstwaLogiki;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import warstwaDanych.KontrolkaKierunkowskazu;
 import warstwaDanych.KontrolkaSwiatel;
@@ -30,9 +32,6 @@ public class DeskaRozdzielcza {
 		swiatla.add(new KontrolkaSwiatel(false));
 		swiatla.add(new KontrolkaSwiatel(false));
 		swiatla.add(new KontrolkaSwiatel(false));
-//		przebiegCalkowity = new LicznikPrzebieguCalkowitego();
-//		przebiegDzienny = new LicznikPrzebieguDziennego();
-//		komputer = new KomputerPokladowy();
 	}
 	
 	public DeskaRozdzielcza(Predkosciomierz predkosciomierz,LicznikPrzebieguCalkowitego przebiegCalkowity,
@@ -54,26 +53,43 @@ public class DeskaRozdzielcza {
 		swiatla.add(2,new KontrolkaSwiatel(drogowych));
 		swiatla.add(3,new KontrolkaSwiatel(przeciwmgelnychPrzod));
 		swiatla.add(4,new KontrolkaSwiatel(przeciwmgelnychTyl));
-		
-//		strzalki.put("prawo",new KontrolkaKierunkowskazu(prawo));
-//		strzalki.put("lewo",new KontrolkaKierunkowskazu(lewo));
-//		
-//		swiatla.put("pozycyjnych",new KontrolkaSwiatel(pozycyjnych));
-//		swiatla.put("mijania", new KontrolkaSwiatel(mijania));
-//		swiatla.put("drogowych", new KontrolkaSwiatel(drogowych));
-//		swiatla.put("przeciwmgelnychPrzod", new KontrolkaSwiatel(przeciwmgelnychPrzod));
-//		swiatla.put("przeciwmgelnychTyl", new KontrolkaSwiatel(przeciwmgelnychTyl));
-		
-		
-//		this.prawo = prawo;
-//		this.lewo = lewo;
-//		this.pozycyjnych = pozycyjnych;
-//		this.mijania = mijania;
-//		this.drogowych = drogowych;
-//		this.przeciwmgelnychPrzod = przeciwmgelnychPrzod;
-//		this.przeciwmgelnychTyl = przeciwmgelnychTyl;
-		
 		this.komputer = komputer;
+	}
+	
+	public void start()
+	{
+		Timer t3 = new Timer();
+		
+		 t3.scheduleAtFixedRate(new TimerTask() {
+
+			    @Override
+			    public void run() {
+			    	refreashDeska();
+			    	
+			    	try {
+						predkosciomierz.zwolnij();
+					} catch (OsiagnietaMinimalnaSzybkoscException e) {
+						e.printStackTrace();
+					}
+			    }
+
+			},
+			//Set how long before to start calling the TimerTask (in milliseconds)
+			1000,
+			//Set the amount of time between each execution (in milliseconds)
+			1000);
+	}
+	
+	public void refreashDeska()
+	{
+		double sekundy = 1;
+		double godziny = sekundy/3600/60;
+    	double dystans = getPredkosciomierz().getPredkosc() * godziny;
+        
+
+    	przebiegCalkowity.zwiekszPrzebieg(dystans);
+    	przebiegDzienny.zwiekszPrzebieg(dystans);
+    	komputer.refreashKomputer(sekundy, godziny,dystans,predkosciomierz.getPredkosc());
 	}
 	
 	public void setPredkosciomierz(Predkosciomierz p)
@@ -115,48 +131,11 @@ public class DeskaRozdzielcza {
 	{
 		return komputer;
 	}
-	
-//	public void setSwiatlo(String nazwa, boolean stan)
-//	{
-//		if (swiatla.putIfAbsent(nazwa, new KontrolkaSwiatel(stan))!=null)
-//		{
-//			swiatla.replace(nazwa, new KontrolkaSwiatel(stan));
-//		}
-//	}
-//	
-//	public KontrolkaSwiatel getSwiatlo(String klucz)
-//	{
-//		return swiatla.get(klucz);
-//	}
-//	
-//	public void setKontrolkaKieronkowskazu(String nazwa, boolean stan)
-//	{
-//		if(strzalki.putIfAbsent(nazwa, new KontrolkaKierunkowskazu(stan)) != null)
-//		{
-//			strzalki.replace(nazwa, new KontrolkaKierunkowskazu(stan));
-//		}
-//				
-//	}
-//	
-//	public KontrolkaKierunkowskazu getKontrolkaKieronkowskazu(String klucz)
-//	{
-//		return strzalki.get(klucz);
-//	}
+
 	
 	public void setSwiatlo(int n, boolean stan)
 	{
 		swiatla.set(n, new KontrolkaSwiatel(stan));
-//		if(stan)
-//		{
-//			if(!swiatla.get(n).getWlaczona())
-//				swiatla.get(n).wlacz();
-//		}
-//		
-//		else
-//		{
-//			if(swiatla.get(n).getWlaczona())
-//				swiatla.get(n).wylacz();
-//		}
 		
 	}
 	
@@ -168,95 +147,12 @@ public class DeskaRozdzielcza {
 	public void setStrzalka(int n, boolean stan)
 	{
 		strzalki.set(n, new KontrolkaKierunkowskazu(stan));
-		
-//		if(stan)
-//		{
-//			if(!strzalki.get(n).getWlaczona())
-//				strzalki.get(n).wlacz();
-//		}
-//		
-//		else
-//		{
-//			if(strzalki.get(n).getWlaczona())
-//				strzalki.get(n).wylacz();
-//		}
 	}
 	
 	public KontrolkaKierunkowskazu getStrzalka(int n)
 	{
 		return strzalki.get(n);
 	}
-	
-	
-//	public void setKontrolkaKierunkowskazuPrawo(KontrolkaKierunkowskazu p)
-//	{
-//		prawo  = p;
-//	}
-//	
-//	public  KontrolkaKierunkowskazu getKontrolkaKierunkowskazuPrawo()
-//	{
-//		return prawo;
-//	}
-//	
-//	public void setKontrolkaKierunkowskazuLewo(KontrolkaKierunkowskazu p)
-//	{
-//		lewo  = p;
-//	}
-//	
-//	public KontrolkaKierunkowskazu getKontrolkaKierunkowskazuLewo()
-//	{
-//		return lewo;
-//	}
-//	
-//	public void setKontrolkaSwiatelPozycyjnych(KontrolkaSwiatel p)
-//	{
-//		pozycyjnych  = p;
-//	}
-//	
-//	public KontrolkaSwiatel getKontrolkaSwiatelPozycyjnych()
-//	{
-//		return pozycyjnych;
-//	}
-//	
-//	public void setKontrolkaSwiatelDrogowych(KontrolkaSwiatel p)
-//	{
-//		drogowych  = p;
-//	}
-//	
-//	public KontrolkaSwiatel getKontrolkaSwiatelDrogowych()
-//	{
-//		return drogowych;
-//	}
-//	
-//	public void setKontrolkaSwiatelPrzeciwmgelnychPrzod(KontrolkaSwiatel p)
-//	{
-//		przeciwmgelnychPrzod  = p;
-//	}
-//	
-//	public KontrolkaSwiatel getKontrolkaSwiatelPrzeciwmgelnychPrzod()
-//	{
-//		return przeciwmgelnychPrzod;
-//	}
-//	
-//	public void setKontrolkaSwiatelPrzeciwmgelnychTyl(KontrolkaSwiatel p)
-//	{
-//		przeciwmgelnychTyl = p;
-//	}
-//	
-//	public KontrolkaSwiatel getKontrolkaSwiatelPrzeciwmgelnychTyl()
-//	{
-//		return przeciwmgelnychTyl;
-//	}
-//	
-//	public void setKontrolkaSwiatelMijania(KontrolkaSwiatel p)
-//	{
-//		mijania  = p;
-//	}
-//	
-//	public KontrolkaSwiatel getKontrolkaSwiatelMijania()
-//	{
-//		return mijania;
-//	}
 	
 	
 }
