@@ -113,11 +113,19 @@ public class CLIinterfejs {
 		}
 		System.out.println("Kierunkowskaz lewo: " + swiatla.get(0));
 		System.out.println("Kierunkowskaz prawo: " + swiatla.get(1));
+<<<<<<< HEAD
 		System.out.println("Swiatla drogowe: " + swiatla.get(2));
 		System.out.println("Swiatla mijania: " + swiatla.get(3));
 		System.out.println("Swiatla przeciwmgielne przod: " + swiatla.get(4));
 		System.out.println("Swiatla przeciwmgelne tyl: " + swiatla.get(5));
 		System.out.println("Swiatla pozycyjne: " + swiatla.get(6));
+=======
+		System.out.println("Swiatla pozycyjne: " + swiatla.get(2));
+		System.out.println("Swiatla mijania: " + swiatla.get(3));
+		System.out.println("Swiatla drogowe: " + swiatla.get(4));
+		System.out.println("Swiatla przeciwmgielne przod: " + swiatla.get(5));
+		System.out.println("Swiatla przeciwmgelne tyl: " + swiatla.get(6));
+>>>>>>> 9035c520b4fe1b50dc9d0774fb55ecb493e9ae2b
 		
 		System.out.println("----Komputer pokladowy-------");
 		System.out.println("Predkosc srednia: " + deska.getKomputerPokladowy().getPredkoscSrednia());
@@ -283,4 +291,8 @@ public class CLIinterfejs {
 			}
 		}while(!wybor.equals("p"));
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9035c520b4fe1b50dc9d0774fb55ecb493e9ae2b
