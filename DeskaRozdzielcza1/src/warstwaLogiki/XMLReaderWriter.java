@@ -37,7 +37,7 @@ public class XMLReaderWriter {
 		try {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 
-            //otwieramy plik xml i tworzymy nowy evenReader
+            //otwieramy plik xml i tworzymy nowy eventReader
             InputStream in = new FileInputStream(file);
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
             

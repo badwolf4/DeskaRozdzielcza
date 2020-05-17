@@ -16,7 +16,7 @@ public class KomputerPokladowy {
 		srednieSpalanie = ss;
 	}
 	
-	KomputerPokladowy()
+	public KomputerPokladowy()
 	{
 		
 	}
@@ -29,6 +29,7 @@ public class KomputerPokladowy {
     	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/60));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
+    	//setSrednieSpalanie(); dopisat
 	}
 	
 	public void setPredkoscSrednia(double p)

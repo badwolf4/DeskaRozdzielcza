@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
+import warstwaDanych.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
@@ -100,12 +101,32 @@ public class Controller {
 	void initialize() {
 		XMLReaderWriter xmlInterpretor = new XMLReaderWriter();
 
-		
-		  testbutton.setOnAction(event ->{
-		  System.out.println("Information button pressed"); });
-		  
+		DatabaseHandler dbHandler = new DatabaseHandler();
+
+		testbutton.setOnAction(event ->{
+			  dbHandler.usunZBD();
+			  dbHandler.zapisacDoBD(
+					  Double.toString(deska.getPredkosciomierz().getPredkosc()),
+					  Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()),
+					  Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()),
+					  deska.getStrzalka(0).getWlaczona(),
+					  deska.getStrzalka(1).getWlaczona(),
+					  deska.getSwiatlo(0).getWlaczona(),
+					  deska.getSwiatlo(1).getWlaczona(),
+					  deska.getSwiatlo(2).getWlaczona(),
+					  deska.getSwiatlo(3).getWlaczona(), 
+					  deska.getSwiatlo(4).getWlaczona(),
+					  Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()),
+					  Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()),
+					  Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()),
+					  Double.toString(deska.getKomputerPokladowy().getDystans()), 
+					  Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie())
+					  );
+		  System.out.println("Information have been saved"); });
+		 DatabaseHandler handler = new DatabaseHandler();
 		 
-		deska = xmlInterpretor.odczytaj("state.xml");
+		//deska = xmlInterpretor.odczytaj("state.xml");
+		deska = handler.wczytajZBD();
 
 		przebiegCalkowity.setEditable(false);
 		przebiegCalkowity.setDisable(true);
@@ -257,7 +278,7 @@ public class Controller {
 				System.out.println(e.getMessage());
 			}
 		}
-		// swiatla
+		// swiatla 
 		if (event.getCode() == KeyCode.Q) {
 			System.out.println("Q pressed");
 			if (!deska.getSwiatlo(0).getWlaczona())
@@ -323,7 +344,7 @@ public class Controller {
 
 		maksymalna.setText(Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
 
-		predkosc.setText(Double.toString(deska.getPredkosciomierz().getPredkosc()));
+		predkosc.setText(Integer.toString(deska.getPredkosciomierz().getPredkosc()));
 
 		if (deska.getSwiatlo(0).getWlaczona())
 			swiatloDrogowe.setFill(Color.BLUE);

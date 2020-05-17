@@ -163,7 +163,7 @@
                   <Font size="51.0" />
                </font>
             </TextField>
-            <Button fx:id="testbutton" layoutX="272.0" layoutY="20.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="testbutton" layoutX="272.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz" />
          </children>
       </AnchorPane>
       <Label layoutX="287.0" layoutY="25.0" prefHeight="52.0" prefWidth="327.0" text="Deska Rozdzielcza" textFill="#fafafa">
