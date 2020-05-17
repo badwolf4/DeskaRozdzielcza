@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.application.Platform;
+
 //import org.xml.sax.helpers.XMLReaderAdapter;
 
 import javafx.fxml.FXML;
@@ -26,7 +28,7 @@ import warstwaLogiki.XMLReaderWriter;
 
 //import javafx.scene.shape.SVGPath;
 
-public class Controller {
+public class Controller  {
 
 	@FXML
 	private ResourceBundle resources;
@@ -93,14 +95,24 @@ public class Controller {
 	private boolean lewyWlaczony = false;
 	private boolean prawyWlaczony = false;
 
-	private DeskaRozdzielcza deska;
+	private DeskaRozdzielcza deska = null;
 
 	private Timer t;
+	private boolean flag;
 
+	public Controller(boolean flag) {
+		this.flag = flag;
+		this.deska = new DeskaRozdzielcza();
+	}
+
+	void wczytaj(boolean W) {
+		System.out.println("Pobrano " + W);
+	}
+	
 	@FXML
 	void initialize() {
 		XMLReaderWriter xmlInterpretor = new XMLReaderWriter();
-
+		
 		DatabaseHandler dbHandler = new DatabaseHandler();
 
 		testbutton.setOnAction(event ->{
@@ -122,11 +134,16 @@ public class Controller {
 					  Double.toString(deska.getKomputerPokladowy().getDystans()), 
 					  Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie())
 					  );
-		  System.out.println("Information have been saved"); });
-		 DatabaseHandler handler = new DatabaseHandler();
+		System.out.println("Information have been saved"); });
+		DatabaseHandler handler = new DatabaseHandler();
 		 
-		//deska = xmlInterpretor.odczytaj("state.xml");
-		deska = handler.wczytajZBD();
+		if(flag) {
+			 deska = handler.wczytajZBD(deska);
+			 System.out.println("czytam z sql");
+		} else {
+			 deska = xmlInterpretor.odczytaj("state.xml");
+			 System.out.println("czytam z xml");
+		}
 
 		przebiegCalkowity.setEditable(false);
 		przebiegCalkowity.setDisable(true);

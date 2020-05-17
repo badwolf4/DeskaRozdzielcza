@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import warstwaInterfejsu.CLIinterfejs;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.KomputerPokladowy;
 
@@ -22,13 +21,11 @@ public Connection getDbConnection()
 						return dbConnection; 
 		}
 
-public DeskaRozdzielcza wczytajZBD() {
+public DeskaRozdzielcza wczytajZBD(DeskaRozdzielcza deska) {
 	String wczytaj ="SELECT *"+" FROM "+Const.tablica ;
-	DeskaRozdzielcza deska = null ;	
 	try {
 		Statement state = getDbConnection().createStatement();
 		ResultSet rs = state.executeQuery(wczytaj);
-		deska = new DeskaRozdzielcza();
 		rs.next();
 		
 		deska.setPredkosciomierz(new Predkosciomierz(rs.getInt(1)));
@@ -55,7 +52,6 @@ public DeskaRozdzielcza wczytajZBD() {
 	}
 	return deska;
 }
-
 
 public void usunZBD() {
 	String delete = "TRUNCATE "+Const.tablica;

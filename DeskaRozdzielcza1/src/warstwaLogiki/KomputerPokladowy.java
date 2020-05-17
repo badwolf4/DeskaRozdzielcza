@@ -1,11 +1,17 @@
 package warstwaLogiki;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class KomputerPokladowy {
 	private double predkoscSrednia;
 	private double predkoscMaksymalna;
 	private double czasPodrozy;
 	private double dystans;
 	private double srednieSpalanie;
+	private DecimalFormat dec = new DecimalFormat("#0.00");
+	
 	
 	KomputerPokladowy(double ps, double pm, double czp, double d, double ss)
 	{
@@ -26,7 +32,7 @@ public class KomputerPokladowy {
 		
 		setCzasPodrozy(getCzasPodrozy()+sekundy);
     	setDystans(getDystans()+ dystans1);
-    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/60));
+    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/360));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
     	//setSrednieSpalanie(); dopisat
@@ -55,28 +61,30 @@ public class KomputerPokladowy {
 	}
 	public double getPredkoscSrednia()
 	{
-		return predkoscSrednia;
+		return bd(predkoscSrednia);
 	}
 	
 	public double getPredkoscMaksymalna()
 	{
-		return predkoscMaksymalna;
+		return bd(predkoscMaksymalna);
 	}
 	
 	public double getCzasPodrozy()
 	{
-		return czasPodrozy;
+		return bd(czasPodrozy);
 	}
 	
 	public double getDystans()
 	{
-		return dystans;
+		return bd(dystans);
 	}
 	
 	public double getSrednieSpalanie()
 	{
-		return srednieSpalanie;
+		return bd(srednieSpalanie);
 	}
 	
-	
+	public static double bd(double input) {
+		return new BigDecimal(input).setScale(2, RoundingMode.HALF_UP).doubleValue();
+	}
 }

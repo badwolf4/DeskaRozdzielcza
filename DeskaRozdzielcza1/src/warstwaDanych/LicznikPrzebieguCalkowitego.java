@@ -1,5 +1,7 @@
 package warstwaDanych;
 
+import warstwaLogiki.KomputerPokladowy;
+
 public class LicznikPrzebieguCalkowitego {
 	protected double przebieg;
 	
@@ -11,7 +13,7 @@ public class LicznikPrzebieguCalkowitego {
 	
 	public double getPrzebieg()
 	{
-		return przebieg;
+		return KomputerPokladowy.bd(przebieg);
 	}
 	
 	public void zwiekszPrzebieg(double ile)

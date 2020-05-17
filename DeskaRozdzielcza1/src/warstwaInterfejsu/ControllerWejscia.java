@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import warstwaLogiki.DeskaRozdzielcza;
 
 public class ControllerWejscia {
 
@@ -47,25 +48,26 @@ public class ControllerWejscia {
     	ToggleGroup group = new ToggleGroup();
     	radioReadFromSQL.setToggleGroup(group);
     	radioReadFromXML.setToggleGroup(group);
-    	
     	comboBox.getItems().removeAll(comboBox.getItems());
         comboBox.getItems().addAll("GUI", "Command Line");
         comboBox.getSelectionModel().select("GUI");
-        //radioReadFromSQL.
-    	
+       
 		okButton.setOnAction(event -> {
 			System.out.println("OK pressed");
-			//RadioButton selection = (RadioButton) group.getSelectedToggle();
-			if(radioReadFromSQL.isSelected()) {
-				wybor = true; //выбираем что загружать с сиквел или хмл
-			}
+			//выбираем что загружать с сиквел или хмл
+			wybor = radioReadFromSQL.isSelected();
+
 			//переход между окнами
 			okButton.getScene().getWindow().hide();
+			Controller controller = new Controller(wybor); 
+			
 			FXMLLoader loader = new FXMLLoader(); 
 			loader.setLocation(getClass().getResource("/warstwaInterfejsu/DeskaRozdzielcza.fxml"));
-		
+			loader.setController(controller);
+			
 			try {
 				loader.load();
+				okButton.getScene().getWindow().setOnCloseRequest(e -> Platform.exit());
 		}
 			catch (IOException e) {
 				e.printStackTrace();
@@ -74,8 +76,11 @@ public class ControllerWejscia {
 			Parent root = loader.getRoot();
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
-			stage.showAndWait();
-			//stage.setOnCloseRequest(e -> Platform.exit());
+			stage.show();
+			stage.setOnCloseRequest(e -> {
+				Platform.exit();
+				System.exit(0);
+			});
 		});		
     }
 }

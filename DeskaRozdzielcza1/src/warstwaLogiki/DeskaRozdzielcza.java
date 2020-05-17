@@ -22,10 +22,8 @@ public class DeskaRozdzielcza {
 	public DeskaRozdzielcza()
 	{
 		strzalki = new ArrayList<KontrolkaKierunkowskazu>();
-		
 		strzalki.add(new KontrolkaKierunkowskazu(false));
 		strzalki.add(new KontrolkaKierunkowskazu(false));
-		
 		swiatla = new ArrayList<KontrolkaSwiatel>();
 		swiatla.add(new KontrolkaSwiatel(false));
 		swiatla.add(new KontrolkaSwiatel(false));
@@ -83,8 +81,8 @@ public class DeskaRozdzielcza {
 	public void refreashDeska()
 	{
 		double sekundy = 1;
-		double godziny = sekundy/3600/60;
-    	double dystans = getPredkosciomierz().getPredkosc() * godziny;
+		double godziny = sekundy/3600;
+		double dystans = getPredkosciomierz().getPredkosc() * godziny;
         
 
     	przebiegCalkowity.zwiekszPrzebieg(dystans);
