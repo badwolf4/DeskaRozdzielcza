@@ -180,16 +180,11 @@ public class Controller  {
 
 			@Override
 			public void run() {
-				// Called each time when 1000 milliseconds (1 second) (the period parameter)
 				refreash();
 			}
-
-		},
-				// Set how long before to start calling the TimerTask (in milliseconds)
-				1000,
-				// Set the amount of time between each execution (in milliseconds)
-				1000);
+		}, 1000, 1000);
 		
+		//wlaczenie kierunkowskazow w gui jesli byl odczytany stan jako wlaczony
 		if(deska.getStrzalka(0).getWlaczona())
 		{
 			lewyWlaczony = true;
@@ -378,7 +373,6 @@ public class Controller  {
 	}
 
 	void refreash() {
-		// System.out.println("deska refreash");
 		przebiegCalkowity.setText(Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
 
 		przebiegDzienny.setText(Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
