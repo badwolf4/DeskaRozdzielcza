@@ -1,4 +1,10 @@
 package warstwaDanych;
+/**
+ * 
+ * @author Viktoriia
+ *
+ *klass który reprezentuje licznik przebiegu calkowitego
+ */
 public class LicznikPrzebieguDziennego extends LicznikPrzebieguCalkowitego{
 
 	public LicznikPrzebieguDziennego() { 

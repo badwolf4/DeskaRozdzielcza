@@ -163,7 +163,8 @@
                   <Font size="51.0" />
                </font>
             </TextField>
-            <Button fx:id="testbutton" layoutX="272.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz" />
+            <Button fx:id="zapiszDoBDButton" layoutX="310.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz do Bazy Danych" />
+            <Button fx:id="zapiszDoXMLButton" layoutX="505.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz do XML" />
          </children>
       </AnchorPane>
       <Label layoutX="287.0" layoutY="25.0" prefHeight="52.0" prefWidth="327.0" text="Deska Rozdzielcza" textFill="#fafafa">

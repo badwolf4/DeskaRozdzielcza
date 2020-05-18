@@ -85,7 +85,10 @@ public class Controller  {
 	private MenuBar deskaMenuBar;
 
 	@FXML
-	private Button testbutton;
+	private Button zapiszDoBDButton;
+	
+	@FXML
+	private Button zapiszDoXMLButton;
 	
 	/*
 	 * @FXML public void handleCloseButtonAction(ActionEvent event) {
@@ -94,6 +97,7 @@ public class Controller  {
 
 	private boolean lewyWlaczony = false;
 	private boolean prawyWlaczony = false;
+	private boolean zapisano = false;
 
 	private DeskaRozdzielcza deska = null;
 
@@ -112,39 +116,41 @@ public class Controller  {
 	@FXML
 	void initialize() {
 		XMLReaderWriter xmlInterpretor = new XMLReaderWriter();
-		
 		DatabaseHandler dbHandler = new DatabaseHandler();
-
-		testbutton.setOnAction(event ->{
-			  dbHandler.usunZBD();
-			  dbHandler.zapisacDoBD(
-					  Double.toString(deska.getPredkosciomierz().getPredkosc()),
-					  Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()),
-					  Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()),
-					  deska.getStrzalka(0).getWlaczona(),
-					  deska.getStrzalka(1).getWlaczona(),
-					  deska.getSwiatlo(0).getWlaczona(),
-					  deska.getSwiatlo(1).getWlaczona(),
-					  deska.getSwiatlo(2).getWlaczona(),
-					  deska.getSwiatlo(3).getWlaczona(), 
-					  deska.getSwiatlo(4).getWlaczona(),
-					  Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()),
-					  Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()),
-					  Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()),
-					  Double.toString(deska.getKomputerPokladowy().getDystans()), 
-					  Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie())
-					  );
-		System.out.println("Information have been saved"); });
-		DatabaseHandler handler = new DatabaseHandler();
-		 
+		
+		//wczytywanie przy starcie okna
 		if(flag) {
-			 deska = handler.wczytajZBD(deska);
+			 deska = dbHandler.wczytajZBD(deska);
 			 System.out.println("czytam z sql");
+			 zapisano = true;
 		} else {
 			 deska = xmlInterpretor.odczytaj("state.xml");
 			 System.out.println("czytam z xml");
 		}
-
+		
+		//obsluga klawiszow do zapisu danych
+		//BD
+		zapiszDoBDButton.setOnAction(event ->{
+			  dbHandler.usunZBD();
+			  dbHandler.zapisacDoBD(deska);
+		System.out.println("Information have been saved"); });
+		
+		//XML
+		zapiszDoXMLButton.setOnAction(event->{
+			try {
+				xmlInterpretor.zapisz(deska);
+				zapisano = true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Nie udalo sie zapisac do XML. Prosze o skorzystanie sie z innej opcji.");
+			}
+			finally {
+				System.out.println("Stan zostal pomyslnie zapisany do XML");
+			}
+		});
+		
+		//zmiana niektorych artyrubow pol tekstowych
 		przebiegCalkowity.setEditable(false);
 		przebiegCalkowity.setDisable(true);
 		czasPodrorzy.setEditable(false);
@@ -162,10 +168,13 @@ public class Controller  {
 		predkosc.setEditable(false);
 		predkosc.setDisable(true);
 
+		//wstepne ladowanie widoku
 		refreash();
-
+		
+		//wlaczenie timera w desce do odswiezania danych
 		deska.start();
 
+		//tworzymy watek do odswiezania widoku co sekunde
 		Timer t1 = new Timer();
 		t1.scheduleAtFixedRate(new TimerTask() {
 
@@ -180,6 +189,47 @@ public class Controller  {
 				1000,
 				// Set the amount of time between each execution (in milliseconds)
 				1000);
+		
+		if(deska.getStrzalka(0).getWlaczona())
+		{
+			lewyWlaczony = true;
+			t = new Timer();
+
+			t.scheduleAtFixedRate(new TimerTask() {
+
+				@Override
+				public void run() {
+					// Called each time when 1000 milliseconds (1 second) (the period parameter)
+					if (lewaStrzalka.getFill() == Color.WHITE) {
+						lewaStrzalka.setFill(Color.GREEN);
+					} else
+						lewaStrzalka.setFill(Color.WHITE);
+				}
+
+			},0,1000);
+			
+			lewaStrzalka.setFill(Color.WHITE);
+		}
+		
+		if(deska.getStrzalka(1).getWlaczona())
+		{
+			t = new Timer();
+			prawyWlaczony = true;
+
+			t.scheduleAtFixedRate(new TimerTask() {
+
+				@Override
+				public void run() {
+					if (prawaStrzalka.getFill() == Color.WHITE) {
+						prawaStrzalka.setFill(Color.GREEN);
+					} else
+						prawaStrzalka.setFill(Color.WHITE);
+
+				}
+
+			}, 0, 1000);
+			prawaStrzalka.setFill(Color.WHITE);
+		}
 
 	}
 
@@ -190,32 +240,23 @@ public class Controller  {
 
 		if (event.getCode() == KeyCode.LEFT) {
 
-			// Declare the timer
 			if (!lewyWlaczony && !prawyWlaczony) {
 				deska.getStrzalka(0).wlacz();
 				t = new Timer();
 
 				lewyWlaczony = true;
 
-				// Set the schedule function and rate
-
 				t.scheduleAtFixedRate(new TimerTask() {
 
 					@Override
 					public void run() {
-						// Called each time when 1000 milliseconds (1 second) (the period parameter)
 						if (lewaStrzalka.getFill() == Color.WHITE) {
 							lewaStrzalka.setFill(Color.GREEN);
 						} else
 							lewaStrzalka.setFill(Color.WHITE);
-
 					}
 
-				},
-						// Set how long before to start calling the TimerTask (in milliseconds)
-						0,
-						// Set the amount of time between each execution (in milliseconds)
-						1000);
+				}, 0, 1000);
 
 				lewaStrzalka.setFill(Color.WHITE);
 			}
@@ -234,21 +275,16 @@ public class Controller  {
 		}
 
 		if (event.getCode() == KeyCode.RIGHT) {
-			// Declare the timer
 			if (!prawyWlaczony && !lewyWlaczony) {
 				deska.getStrzalka(1).wlacz();
 
 				t = new Timer();
-
 				prawyWlaczony = true;
-
-				// Set the schedule function and rate
 
 				t.scheduleAtFixedRate(new TimerTask() {
 
 					@Override
 					public void run() {
-						// Called each time when 1000 milliseconds (1 second) (the period parameter)
 						if (prawaStrzalka.getFill() == Color.WHITE) {
 							prawaStrzalka.setFill(Color.GREEN);
 						} else
@@ -256,11 +292,7 @@ public class Controller  {
 
 					}
 
-				},
-						// Set how long before to start calling the TimerTask (in milliseconds)
-						0,
-						// Set the amount of time between each execution (in milliseconds)
-						1000);
+				}, 0, 1000);
 
 				prawaStrzalka.setFill(Color.WHITE);
 

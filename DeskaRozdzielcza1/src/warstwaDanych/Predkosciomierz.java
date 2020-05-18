@@ -1,12 +1,6 @@
 package warstwaDanych;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import warstwaInterfejsu.CLIinterfejs;
-import warstwaLogiki.DeskaRozdzielcza;
-import warstwaLogiki.KomputerPokladowy;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
 

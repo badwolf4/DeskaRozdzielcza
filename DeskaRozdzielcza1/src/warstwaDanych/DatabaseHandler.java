@@ -67,24 +67,8 @@ public void usunZBD() {
 	
 }
 
-public void zapisacDoBD(
-		String predkosc,
-		String przebieg_calkowity,
-		String przebieg_dzienny,
-		Boolean lewy_kierunkowskaz,
-		Boolean prawy_kierunkowskaz,
-		Boolean kontrolka_swiatel_pozycyjnych,
-		Boolean kontrolka_swiatel_mijania,
-		Boolean kontrolka_swiatel_drogowych , 
-		
-		Boolean kontrolka_swiatel_przeciwmgielnych_przod,
-		Boolean kontrolka_swiatel_przeciwmgielnych_tyl,
-		
-		String predkosc_srednia,
-		String predkosc_maksymalna,
-		String czas_podrozy,
-		String dystans, 
-		String srednie_spalanie) {
+public void zapisacDoBD(DeskaRozdzielcza deska) {
+	
 			String insert = "INSERT INTO "+Const.tablica+ "(" +Const.predkosc + "," +Const.przebieg_calkowity+ "," +Const.przebieg_dzienny+ 
 					"," +Const.lewy_kierunkowskaz+ "," +Const.prawy_kierunkowskaz+ "," +Const.kontrolka_swiatel_pozycyjnych + "," +Const.kontrolka_swiatel_mijania
 					+ "," +Const.kontrolka_swiatel_drogowych+ "," +Const.kontrolka_swiatel_przeciwmgielnych_przod+ "," 
@@ -93,21 +77,21 @@ public void zapisacDoBD(
 					"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			try {
 				PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-				prSt.setString(1, predkosc);
-				prSt.setString(2, przebieg_calkowity);
-				prSt.setString(3, przebieg_dzienny);
-				prSt.setBoolean(4, lewy_kierunkowskaz);
-				prSt.setBoolean(5, prawy_kierunkowskaz);
-				prSt.setBoolean(6, kontrolka_swiatel_pozycyjnych);
-				prSt.setBoolean(7, kontrolka_swiatel_mijania);
-				prSt.setBoolean(8, kontrolka_swiatel_drogowych);
-				prSt.setBoolean(9, kontrolka_swiatel_przeciwmgielnych_przod);
-				prSt.setBoolean(10,kontrolka_swiatel_przeciwmgielnych_tyl);
-				prSt.setString(11, predkosc_srednia);
-				prSt.setString(12, predkosc_maksymalna);
-				prSt.setString(13, czas_podrozy);
-				prSt.setString(14, dystans);
-				prSt.setString(15, srednie_spalanie);
+				prSt.setString(1, Double.toString(deska.getPredkosciomierz().getPredkosc()));
+				prSt.setString(2, Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
+				prSt.setString(3, Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
+				prSt.setBoolean(4, deska.getStrzalka(0).getWlaczona());
+				prSt.setBoolean(5, deska.getStrzalka(1).getWlaczona());
+				prSt.setBoolean(6, deska.getSwiatlo(0).getWlaczona());
+				prSt.setBoolean(7, deska.getSwiatlo(1).getWlaczona());
+				prSt.setBoolean(8, deska.getSwiatlo(2).getWlaczona());
+				prSt.setBoolean(9, deska.getSwiatlo(3).getWlaczona());
+				prSt.setBoolean(10,deska.getSwiatlo(4).getWlaczona());
+				prSt.setString(11, Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()));
+				prSt.setString(12, Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
+				prSt.setString(13, Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()));
+				prSt.setString(14, Double.toString(deska.getKomputerPokladowy().getDystans()));
+				prSt.setString(15, Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie()));
 				prSt.execute();
 				dbConnection.close();
 				} catch (SQLException e) {
