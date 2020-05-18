@@ -1,13 +1,19 @@
 package warstwaInterfejsu;
 	
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-	
+
+/**
+ * Klasa reprezentująca punkt wejścia do aplikacji
+ */
 public class Main extends Application {
+	
+	/**
+	 * Metoda do załadowania widoku aplikacji z plików zródłowych
+	 */
 	@Override
 	public void start(Stage primaryStage) 
 		throws Exception{ 
@@ -20,7 +26,10 @@ public class Main extends Application {
 			//primaryStage.setOnCloseRequest(e -> Platform.exit());
 	}
 	
-	
+	/**
+	 * Główna metoda main aplikacji
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

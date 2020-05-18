@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -14,8 +13,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import warstwaLogiki.DeskaRozdzielcza;
 
+/**
+ * Klasa reprezentujД…ca okienko startu z wyborem interfejsu (GUI/CLI) oraz wybor skД…d wczytaД‡ dane do aplikacji
+ */
 public class ControllerWejscia {
 
     @FXML
@@ -42,8 +43,10 @@ public class ControllerWejscia {
 
 	boolean wybor = false;
     
+	/**
+	 * Metoda wywoЕ‚ywana przy zaЕ‚adowaniu widoku okienka
+	 */
     @FXML
-    
     void initialize() {
     	ToggleGroup group = new ToggleGroup();
     	radioReadFromSQL.setToggleGroup(group);
@@ -54,10 +57,7 @@ public class ControllerWejscia {
        
 		okButton.setOnAction(event -> {
 			System.out.println("OK pressed");
-			//выбираем что загружать с сиквел или хмл
 			wybor = radioReadFromSQL.isSelected();
-
-			//переход между окнами
 			okButton.getScene().getWindow().hide();
 			Controller controller = new Controller(wybor); 
 			

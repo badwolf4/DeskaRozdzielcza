@@ -1,20 +1,21 @@
 package warstwaDanych;
 /**
- * 
- * @author Viktoriia
- *
- *klass kt�ry reprezentuje licznik przebiegu calkowitego
+
+ * Klass który reprezentuje licznik przebiegu calkowitego
  */
 public class LicznikPrzebieguDziennego extends LicznikPrzebieguCalkowitego{
-
-	public LicznikPrzebieguDziennego() { 
-		super();
-	}
+	
+	/**
+	 * Tworzenie nowej instancji klasy LicznikPrzebieguCalkowitego.
+	 * @param p początkowy przebieg
+	 */
 	public LicznikPrzebieguDziennego(double p) {
 		super(p);
-		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Metoda do wyzerowania pola przebieg
+	 */
 	public void wyzerujLicznik()
 	{
 		przebieg = 0;

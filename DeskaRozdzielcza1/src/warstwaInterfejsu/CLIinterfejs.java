@@ -1,62 +1,50 @@
 package warstwaInterfejsu;
 
-
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import warstwaLogiki.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
 import warstwaLogiki.XMLReaderWriter;
 
+/**
+ * Klasa reprezentująca uposzczony interfejs w konsoli
+ */
 public class CLIinterfejs {
 	private DeskaRozdzielcza deska;
 	private String wczytajZ;
 	private String zapiszDo;
 	
+	/**
+	 * Tworzenie nowej instancji klasy CLIinterfejs
+	 */
 	public CLIinterfejs()
 	{
 		String wczytajZ = null;
 		String zapiszDo = null;
 	}
 	
-	public void pokazStartMenu()
-	{
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("--------Menu---------");
-		System.out.println("1 - Wczytaj z XML");
-		System.out.println("2 - Wczytaj z bazy danych");
-		do
-		{
-			wczytajZ = scan.nextLine();
-			
-		}while(!wczytajZ.equals("1") && !wczytajZ.equals("2"));
-		
-		System.out.println("1 - Zapisz do XML");
-		System.out.println("2 - Zapisz do bazy danych");
-		do
-		{
-			zapiszDo  = scan.nextLine();
-			
-		}while(!zapiszDo.equals("1") && !zapiszDo.equals("2"));
-		
-		
-		
-	}
+	/**
+	 * Główna metoda służąca do interakcji z użytkownikiem
+	 */
 	
 	public void start()
 	{
 		Scanner scan = new Scanner(System.in);
 		String wybor = null;
 		XMLReaderWriter rwXML = new XMLReaderWriter();
+		DatabaseHandler handler = new DatabaseHandler();
 		
 		pokazStartMenu();
+		
 		if(wczytajZ.equals("1"))
 			deska = rwXML.odczytaj("state.xml");
 		if(wczytajZ.equals("2"))
-			return;
+			deska = handler.wczytajZBD();
 		
 		deska.start();
 		do {
@@ -85,16 +73,53 @@ public class CLIinterfejs {
 			}	
 		}
 		if(zapiszDo.equals("2"))
-			return;
+		{
+			handler.zapisacDoBD(deska);
+		}
+		
+		scan.close();
 			
 	}
+	
+	/**
+	 * Metoda do wyświetlena początkowego menu zapewniającego użytkownikowi 
+	 * wybór skąd wczytać i dokąd zapisać dane aplikacji
+	 */
+	public void pokazStartMenu()
+	{
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("--------Menu---------");
+		System.out.println("1 - Wczytaj z XML");
+		System.out.println("2 - Wczytaj z bazy danych");
+		do
+		{
+			wczytajZ = scan.nextLine();
+			
+		}while(!wczytajZ.equals("1") && !wczytajZ.equals("2"));
+		
+		System.out.println("1 - Zapisz do XML");
+		System.out.println("2 - Zapisz do bazy danych");
+		do
+		{
+			zapiszDo  = scan.nextLine();
+			
+		}while(!zapiszDo.equals("1") && !zapiszDo.equals("2"));
+		scan.close();
+		
+		
+	}
+	
+	/**
+	 * Metoda służąca do wyświetlenia stanu deski rozdzielczej, całej jej zawartości
+	 */
 	
 	public void pokazStanDeski()
 	{
 		System.out.println("---------Deska Rozdzielcza------------");
-		System.out.println("Predkosc: " + deska.getPredkosciomierz().getPredkosc());
-		System.out.println("Przebieg dzienny: " + deska.getLicznikPrzebieguDziennego().getPrzebieg());
-		System.out.println("Przebieg calkowity: " + deska.getLicznikPrzebieguCalkowitego().getPrzebieg());
+		System.out.println("Predkosc: " + (int)Math.abs(deska.getPredkosciomierz().getPredkosc()));
+		System.out.println("Przebieg dzienny: " + bd(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
+		System.out.println("Przebieg calkowity: " + bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
 		ArrayList<String> swiatla = new ArrayList<String>(); 
 		for( int i = 0; i < 2; i++)
 		{
@@ -128,12 +153,16 @@ public class CLIinterfejs {
 
 		
 		System.out.println("----Komputer pokladowy-------");
-		System.out.println("Predkosc srednia: " + deska.getKomputerPokladowy().getPredkoscSrednia());
-		System.out.println("Predkosc maksymalna: " + deska.getKomputerPokladowy().getPredkoscMaksymalna());
-		System.out.println("Czas podrozy: " + deska.getKomputerPokladowy().getCzasPodrozy());
-		System.out.println("Dystans: " + deska.getKomputerPokladowy().getDystans());
-		System.out.println("Srednie spalanie: " + deska.getKomputerPokladowy().getSrednieSpalanie());
+		System.out.println("Predkosc srednia: " + bd(deska.getKomputerPokladowy().getPredkoscSrednia()));
+		System.out.println("Predkosc maksymalna: " + (int)Math.abs(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
+		System.out.println("Czas podrozy: " + bd(deska.getKomputerPokladowy().getCzasPodrozy()));
+		System.out.println("Dystans: " + bd(deska.getKomputerPokladowy().getDystans()));
+		System.out.println("Srednie spalanie: " + bd(deska.getKomputerPokladowy().getSrednieSpalanie()));
 	}
+	
+	/**
+	 * Metoda do wyświetlenia pomocy dla trybu edycji
+	 */
 	
 	public void wypiszPomoc()
 	{
@@ -150,6 +179,9 @@ public class CLIinterfejs {
 		System.out.println("P - wyjdz");
 	}
 	
+	/**
+	 * Metoda do modyfikacji zawartości deski rozdzielczej, tzw. tryb edycji
+	 */
 	public void trybEdycji()
 	{
 		String wybor = null;
@@ -290,6 +322,17 @@ public class CLIinterfejs {
 				}
 			}
 		}while(!wybor.equals("p"));
+		scan.close();
+	}
+	
+	/**
+	 * Metoda do zaokrąglenia wartości do dwu miejsc po przycinku przed wyświetlaniem na ekranie
+	 * @param input wartość która będzie poddana zaokrągleniu
+	 * @return double
+	 */
+
+	public double bd(double input) {
+		return new BigDecimal(input).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 
 }

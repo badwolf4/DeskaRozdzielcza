@@ -1,5 +1,8 @@
-package warstwaDanych;
+package warstwaLogiki;
 
+/**
+ * Klasa do przychowywania nazw kolumn tablicy w bazie danych, nazwy tablicy
+ */
 public class Const {
 	public static final String tablica ="dane";
 	public static final String predkosc ="predkosc";
@@ -7,7 +10,6 @@ public class Const {
 	public static final String przebieg_dzienny ="przebieg_dzienny";
 	public static final String lewy_kierunkowskaz ="lewy_kierunkowskaz";
 	public static final String prawy_kierunkowskaz ="prawy_kierunkowskaz";
-	//kotrolka_swiatel_pozycyjnych
 	public static final String kontrolka_swiatel_pozycyjnych ="kontrolka_swiatel_pozycyjnych";
 	public static final String kontrolka_swiatel_mijania ="kontrolka_swiatel_mijania";
 	public static final String kontrolka_swiatel_drogowych ="kontrolka_swiatel_drogowych";

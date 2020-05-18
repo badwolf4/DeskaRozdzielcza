@@ -1,14 +1,11 @@
 package warstwaInterfejsu;
 
-import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javafx.application.Platform;
-
-//import org.xml.sax.helpers.XMLReaderAdapter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,15 +16,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
-import javafx.stage.Stage;
-import warstwaDanych.DatabaseHandler;
+
+import warstwaLogiki.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
 import warstwaLogiki.XMLReaderWriter;
 
-//import javafx.scene.shape.SVGPath;
-
+/**
+ * Klasa służąca do zarządzania widokiem głównego interfejsu graficznego aplikacji (GUI)
+ */
 public class Controller  {
 
 	@FXML
@@ -90,28 +88,25 @@ public class Controller  {
 	@FXML
 	private Button zapiszDoXMLButton;
 	
-	/*
-	 * @FXML public void handleCloseButtonAction(ActionEvent event) {
-	 * ((Stage)(((Button)event.getSource()).getScene().getWindow())).close(); }
-	 */
-
 	private boolean lewyWlaczony = false;
 	private boolean prawyWlaczony = false;
-	private boolean zapisano = false;
-
 	private DeskaRozdzielcza deska = null;
-
 	private Timer t;
 	private boolean flag;
 
+	/**
+	 * Tworzenie nowej instancji klasy Controller
+	 * @param flag parametr przekazany od startowego okienka sygnalizująca wybór użytkownika skąd wczytać dane
+	 */
 	public Controller(boolean flag) {
 		this.flag = flag;
 		this.deska = new DeskaRozdzielcza();
 	}
-
-	void wczytaj(boolean W) {
-		System.out.println("Pobrano " + W);
-	}
+	
+	/**
+	 * Metoda wywoływana podczas startu widoku. Służy do ustawienia parametrów dla elementów widoku:
+	 *  obsługa przycisków, start wątku odświeżającego interfejsc co sekundę. Wczytanie początkowego stanu widoku
+	 */
 	
 	@FXML
 	void initialize() {
@@ -120,9 +115,8 @@ public class Controller  {
 		
 		//wczytywanie przy starcie okna
 		if(flag) {
-			 deska = dbHandler.wczytajZBD(deska);
+			 deska = dbHandler.wczytajZBD();
 			 System.out.println("czytam z sql");
-			 zapisano = true;
 		} else {
 			 deska = xmlInterpretor.odczytaj("state.xml");
 			 System.out.println("czytam z xml");
@@ -139,7 +133,6 @@ public class Controller  {
 		zapiszDoXMLButton.setOnAction(event->{
 			try {
 				xmlInterpretor.zapisz(deska);
-				zapisano = true;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -228,6 +221,10 @@ public class Controller  {
 
 	}
 
+	/**
+	 * Metoda zapewniająca obsługę zdarzeń klawiatuwy
+	 * @param event klawisz który został wciśnięty
+	 */
 	@FXML
 	void handleOnKeyPressed(KeyEvent event) {
 		System.out.println("Klawisz wcisnieto");
@@ -367,27 +364,35 @@ public class Controller  {
 			else
 				deska.getSwiatlo(4).wylacz();
 		}
+		if(event.getCode() == KeyCode.U) {
+			System.out.println("Wyzerowanie licznika przebiegu dziennego");
+			deska.getLicznikPrzebieguDziennego().wyzerujLicznik();
+		}
 
 		refreash();
 
 	}
+	
+	/**
+	 * Metoda odświeżająca interfejsc graficzny aplikacji
+	 */
 
 	void refreash() {
-		przebiegCalkowity.setText(Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
+		przebiegCalkowity.setText(Double.toString(bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg())));
 
-		przebiegDzienny.setText(Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
+		przebiegDzienny.setText(Double.toString(bd(deska.getLicznikPrzebieguDziennego().getPrzebieg())));
 
-		czasPodrorzy.setText(Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()));
+		czasPodrorzy.setText(Double.toString(bd(deska.getKomputerPokladowy().getCzasPodrozy())));
 
-		dystans.setText(Double.toString(deska.getKomputerPokladowy().getDystans()));
+		dystans.setText(Double.toString(bd(deska.getKomputerPokladowy().getDystans())));
 
-		spalanie.setText(Double.toString(deska.getKomputerPokladowy().getSrednieSpalanie()));
+		spalanie.setText(Double.toString(bd(deska.getKomputerPokladowy().getSrednieSpalanie())));
 
-		srednia.setText(Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()));
+		srednia.setText(Double.toString(bd(deska.getKomputerPokladowy().getPredkoscSrednia())));
 
-		maksymalna.setText(Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
+		maksymalna.setText(Integer.toString((int)Math.round(deska.getKomputerPokladowy().getPredkoscMaksymalna())));
 
-		predkosc.setText(Integer.toString(deska.getPredkosciomierz().getPredkosc()));
+		predkosc.setText(Integer.toString((int)Math.round(deska.getPredkosciomierz().getPredkosc())));
 
 		if (deska.getSwiatlo(0).getWlaczona())
 			swiatloDrogowe.setFill(Color.BLUE);
@@ -414,5 +419,14 @@ public class Controller  {
 		else
 			swiatloPozycyjne.setFill(Color.WHITE);
 	}
+	
+	/**
+	 * Metoda do zaokrąglenia wartości do dwu miejsc po przycinku przed wyświetlaniem na ekranie
+	 * @param input wartość która będzie poddana zaokrągleniu
+	 * @return double
+	 */
 
+	public double bd(double input) {
+		return new BigDecimal(input).setScale(2, RoundingMode.HALF_UP).doubleValue();
+	}
 }

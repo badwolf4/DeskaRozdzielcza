@@ -22,13 +22,20 @@ import warstwaDanych.LicznikPrzebieguDziennego;
 import warstwaDanych.Predkosciomierz;
 
 
-
+/**
+ * Klasa pośrednicząca w zapisie/odczycie do/z pliku xml
+ */
 public class XMLReaderWriter {
-	
-	
-	
+	/**
+	 * Metoda do tworzenie nowej instancji klasu XMLReaderWriter
+	 */
 	public XMLReaderWriter(){ }
 	
+	/**
+	 * Metoda do odczytu z pliku xml
+	 * @param file nazwa pliku
+	 * @return DeskaRozdzielcza
+	 */
 	public DeskaRozdzielcza odczytaj(String file)
 	{
 		DeskaRozdzielcza deska = null;
@@ -61,7 +68,7 @@ public class XMLReaderWriter {
                 	if(event.isStartElement()) {
                         if(event.asStartElement().getName().getLocalPart().equals("predkosc")) {
                             event = eventReader.nextEvent();
-                            deska.setPredkosciomierz(new Predkosciomierz(Integer.parseInt(event.asCharacters().getData())));
+                            deska.setPredkosciomierz(new Predkosciomierz(Double.parseDouble(event.asCharacters().getData())));
                             continue;
                         }
                     }
@@ -241,6 +248,11 @@ public class XMLReaderWriter {
 		return deska;
 	}
 	
+	/**
+	 * Metoda do zapisu do pliku xml
+	 * @param deska obiekt którego stan zostanie zapisany
+	 * @throws Exception
+	 */
 	public void zapisz(DeskaRozdzielcza deska) throws Exception
 	{
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
@@ -258,7 +270,7 @@ public class XMLReaderWriter {
 		eventWriter.add(end);
 		
 		//<predkosc> wartosc </predkosc>
-		createNode(eventWriter,"predkosc", Integer.toString(deska.getPredkosciomierz().getPredkosc()));
+		createNode(eventWriter,"predkosc", Double.toString(deska.getPredkosciomierz().getPredkosc()));
 	
 		
 		//<przebieg_calkowity> wartosc </przebieg_calkowity>
@@ -328,6 +340,13 @@ public class XMLReaderWriter {
 		eventWriter.close();
 	}
 	
+	/**
+	 * Metoda do tworzenia węzła w xml
+	 * @param eventWriter
+	 * @param name
+	 * @param value
+	 * @throws XMLStreamException
+	 */
 	private void createNode(XMLEventWriter eventWriter, String name, String value) throws XMLStreamException {
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		DTD end = eventFactory.createDTD("\n");
@@ -348,11 +367,6 @@ public class XMLReaderWriter {
 		EndElement eElement = eventFactory.createEndElement("", "", name);
 		eventWriter.add(eElement);
 		eventWriter.add(end);
-	}
-	
-	public void odczytaj()
-	{
-		
 	}
 
 }

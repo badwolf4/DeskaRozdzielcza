@@ -1,27 +1,47 @@
-package warstwaDanych;
+package warstwaLogiki;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import warstwaLogiki.DeskaRozdzielcza;
-import warstwaLogiki.KomputerPokladowy;
+import warstwaDanych.LicznikPrzebieguCalkowitego;
+import warstwaDanych.LicznikPrzebieguDziennego;
+import warstwaDanych.Predkosciomierz;
 
 import java.sql.ResultSet;
 
-public class DatabaseHandler extends Config {
+/**
+ * Klasa do nawiązania połączenia z bazą danych, umożliwiająca zapis/odczyt danych z/do bazy danych 
+ */
+public class DatabaseHandler{
 Connection dbConnection;
+
+/**
+ * Metoda do tworzenia nowej instanji klasy DatabaseHandler 
+ */
+public DatabaseHandler(){ }
+/**
+ * Metoda służąca do nawiązania połączenia z bazą danych
+ * @return Connection obiekt pośredniczący między aplikacją a bazą danych
+ * @throws ClassNotFoundException wyjątek rzucany w przypadku kiedy nie znaleziono w systemie sterownika do nawiązania połączenia
+ * @throws SQLException 
+ */
 public Connection getDbConnection() 
 		throws ClassNotFoundException, SQLException {
-			String connectionString ="jdbc:mysql://" + dbHost + ":" + dbPort + 
-						"/" + dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String connectionString ="jdbc:mysql://" + Config.dbHost + ":" + Config.dbPort + 
+						"/" + Config.dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 						Class.forName("com.mysql.cj.jdbc.Driver");
-						dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+						dbConnection = DriverManager.getConnection(connectionString, Config.dbUser, Config.dbPass);
 						return dbConnection; 
 		}
 
-public DeskaRozdzielcza wczytajZBD(DeskaRozdzielcza deska) {
+/**
+ * Metoda do wczytania danych z bazy danych
+ * @return DeskaRozdzielcza obiekt służący do przechowywania danych wewnątrz działającej aplikacji
+ */
+public DeskaRozdzielcza wczytajZBD() {
+	DeskaRozdzielcza deska = new DeskaRozdzielcza();
 	String wczytaj ="SELECT *"+" FROM "+Const.tablica ;
 	try {
 		Statement state = getDbConnection().createStatement();
@@ -53,6 +73,9 @@ public DeskaRozdzielcza wczytajZBD(DeskaRozdzielcza deska) {
 	return deska;
 }
 
+/**
+ * Metoda do czyszczenia starych danych przed zapisem nowych
+ */
 public void usunZBD() {
 	String delete = "TRUNCATE "+Const.tablica;
 	
@@ -67,6 +90,10 @@ public void usunZBD() {
 	
 }
 
+/**
+ * Metoda do zapisania danych do bazy danych
+ * @param deska obiekt z ktorego dane zostaną zapisane do bazy danych
+ */
 public void zapisacDoBD(DeskaRozdzielcza deska) {
 	
 			String insert = "INSERT INTO "+Const.tablica+ "(" +Const.predkosc + "," +Const.przebieg_calkowity+ "," +Const.przebieg_dzienny+ 

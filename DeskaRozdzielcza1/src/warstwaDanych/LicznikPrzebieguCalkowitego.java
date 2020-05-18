@@ -1,19 +1,29 @@
 package warstwaDanych;
 
-import warstwaLogiki.KomputerPokladowy;
 
+/**
+ * Klasa reprezentująca licznik przebiegu całkowitego samochodu
+ */
 public class LicznikPrzebieguCalkowitego {
+
 	protected double przebieg;
 	
-	public LicznikPrzebieguCalkowitego() { }
+	/**
+	 * Tworzenie nowej instancji klasy LIcznikPrzebieguCałkowitego
+	 * @param p
+	 */
 	public LicznikPrzebieguCalkowitego(double p)
 	{
 		przebieg = p;
 	}
 	
+	/**
+	 * Metoda dostępu do pola przebieg
+	 * @return double
+	 */
 	public double getPrzebieg()
 	{
-		return KomputerPokladowy.bd(przebieg);
+		return przebieg;
 	}
 	
 	public void zwiekszPrzebieg(double ile)
