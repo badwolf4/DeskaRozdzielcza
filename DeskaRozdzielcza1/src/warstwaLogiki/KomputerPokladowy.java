@@ -50,7 +50,43 @@ public class KomputerPokladowy {
     	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/360));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
-    	//setSrednieSpalanie(); dopisat
+    	setSrednieSpalanie(arraySpalania(predkosc)); 
+	}
+	
+	int i=0;
+	double rez=0.0;
+	
+	double arraySpalania(double predkosc) {
+		
+		i++;
+		//System.out.println("i="+i);
+		double spalanie = policzSpalanie(predkosc);
+		//System.out.println("policzSpalanie="+rez);
+		rez+=spalanie;
+		return rez/i;
+	}
+	
+	double policzSpalanie(double predkosc) {
+		double litrowNa100km =10.0;
+		double mnoznik0=1.0;
+		double mnoznikNiski=0.5;
+		double mnoznikWielki=1.5;
+		if(predkosc>80.0 && predkosc<=120.0) {
+			return litrowNa100km*mnoznik0;
+		}
+		else
+			if(predkosc>1.0 && predkosc<=40.0) {
+				return litrowNa100km*mnoznikWielki;
+			}
+			else
+				if(predkosc>120.0){
+					return litrowNa100km*mnoznikWielki; 
+				}
+				else 
+					if(predkosc>40.0 && predkosc<=80.0) {
+						return litrowNa100km*mnoznikNiski; 
+					}
+					else return 0.0;
 	}
 	
 	/**

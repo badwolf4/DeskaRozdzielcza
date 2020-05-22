@@ -138,22 +138,22 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <Label layoutX="649.0" layoutY="44.0" text="Średnia">
+            <Label layoutX="628.0" layoutY="45.0" text="Średnia">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="649.0" layoutY="121.0" text="Maksymalna">
+            <Label layoutX="628.0" layoutY="122.0" text="Maksymalna">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="srednia" layoutX="773.0" layoutY="25.0" prefHeight="69.0" prefWidth="102.0" text="0">
+            <TextField fx:id="srednia" layoutX="753.0" layoutY="25.0" prefHeight="69.0" prefWidth="122.0" text="0">
                <font>
                   <Font size="32.0" />
                </font>
             </TextField>
-            <TextField fx:id="maksymalna" layoutX="773.0" layoutY="102.0" prefHeight="69.0" prefWidth="102.0" text="0">
+            <TextField fx:id="maksymalna" layoutX="753.0" layoutY="102.0" prefHeight="69.0" prefWidth="122.0" text="0">
                <font>
                   <Font size="32.0" />
                </font>
@@ -174,14 +174,16 @@
       </Label>
       <MenuBar fx:id="deskaMenuBar" prefHeight="25.0" prefWidth="900.0" style="-fx-background-color: white;">
         <menus>
-          <Menu mnemonicParsing="false" text="Menu">
+          <Menu fx:id="menuBarMenu" mnemonicParsing="false" text="Menu">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="TEST" mnemonicParsing="false" text="Safe to DB" />
+                  <MenuItem fx:id="zapiszDoXMLItem" mnemonicParsing="false" text="Safe to XML" />
+              <MenuItem fx:id="menuBarClose" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="AboutItem" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>

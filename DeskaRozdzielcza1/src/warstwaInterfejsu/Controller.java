@@ -7,16 +7,21 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polyline;
-
+import javafx.stage.Stage;
 import warstwaLogiki.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
@@ -81,12 +86,26 @@ public class Controller  {
 
 	@FXML
 	private MenuBar deskaMenuBar;
+	
+	@FXML private MenuItem menuBarClose;
+	
+	@FXML private MenuItem menuBarMenu;
 
 	@FXML
 	private Button zapiszDoBDButton;
 	
 	@FXML
 	private Button zapiszDoXMLButton;
+	
+	@FXML
+	private MenuItem TEST;
+	
+	@FXML
+	private MenuItem zapiszDoXMLItem;
+	
+	@FXML
+	private MenuItem AboutItem;
+	
 	
 	private boolean lewyWlaczony = false;
 	private boolean prawyWlaczony = false;
@@ -122,15 +141,51 @@ public class Controller  {
 			 System.out.println("czytam z xml");
 		}
 		
-		//obsluga klawiszow do zapisu danych
-		//BD
-		zapiszDoBDButton.setOnAction(event ->{
+		//obsluga klawiszow do zapisu danych		
+
+		TEST.setOnAction(event ->{
 			  dbHandler.usunZBD();
 			  dbHandler.zapisacDoBD(deska);
 		System.out.println("Information have been saved"); });
 		
-		//XML
+		AboutItem.setOnAction(event ->{
+			 Label secondLabel = new Label("Autorzy: Viktoriia Voloszczenko i Anton Tkach\n\nDeska Rozdzielcza samochodu. Cos tu cos Vika sobaka kusaka");
+			 StackPane secondaryLayout = new StackPane();
+	         secondaryLayout.getChildren().add(secondLabel);
+	         Scene secondScene = new Scene(secondaryLayout, 400, 300);
+	         Stage newWindow = new Stage();
+	         newWindow.setTitle("Second Stage");
+	         newWindow.setScene(secondScene);
+	         newWindow.show();
+		 });
+		
+		zapiszDoBDButton.setOnAction(event ->{
+				//TEST.setOnAction(event ->{
+					  dbHandler.usunZBD();
+					  dbHandler.zapisacDoBD(deska);
+				System.out.println("Information have been saved"); });
+				
+		//XML zapiszDoXMLItem
 		zapiszDoXMLButton.setOnAction(event->{
+			try {
+				xmlInterpretor.zapisz(deska);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Nie udalo sie zapisac do XML. Prosze o skorzystanie sie z innej opcji.");
+			}
+			finally {
+				System.out.println("Stan zostal pomyslnie zapisany do XML");
+			}
+		});
+		
+		
+		menuBarClose.setOnAction(event->{
+			System.exit(0);
+		});
+		
+		
+		zapiszDoXMLItem.setOnAction(event->{
 			try {
 				xmlInterpretor.zapisz(deska);
 			} catch (Exception e) {
@@ -301,8 +356,9 @@ public class Controller  {
 				prawaStrzalka.setFill(Color.WHITE);
 			}
 		}
+		
 		if (event.getCode() == KeyCode.UP) {
-
+		
 			try {
 				deska.getPredkosciomierz().przyspiesz();
 			}
@@ -311,7 +367,7 @@ public class Controller  {
 				System.out.println(e.getMessage());
 			}
 		}
-
+		
 		if (event.getCode() == KeyCode.DOWN) {
 			try {
 				deska.getPredkosciomierz().bardzoZwolnij();

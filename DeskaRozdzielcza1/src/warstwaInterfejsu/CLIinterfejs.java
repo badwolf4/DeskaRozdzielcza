@@ -14,7 +14,7 @@ import warstwaLogiki.XMLReaderWriter;
 /**
  * Klasa reprezentująca uposzczony interfejs w konsoli
  */
-public class CLIinterfejs {
+public class CLIinterfejs extends Thread{
 	private DeskaRozdzielcza deska;
 	private String wczytajZ;
 	private String zapiszDo;
@@ -24,15 +24,15 @@ public class CLIinterfejs {
 	 */
 	public CLIinterfejs()
 	{
-		String wczytajZ = null;
-		String zapiszDo = null;
+		//String wczytajZ = null;
+		//String zapiszDo = null;
 	}
 	
 	/**
 	 * Główna metoda służąca do interakcji z użytkownikiem
 	 */
 	
-	public void start()
+	public void run()
 	{
 		Scanner scan = new Scanner(System.in);
 		String wybor = null;
@@ -61,7 +61,10 @@ public class CLIinterfejs {
 			if(wybor.equals("1"))
 				pokazStanDeski();
 			if(wybor.equals("2"))
-				trybEdycji();			
+				trybEdycji();
+			//if(wybor.equals("3"))
+				//1
+			//System.exit(0);
 		}while(!wybor.equals("3"));
 		
 		if(zapiszDo.equals("1"))
@@ -78,6 +81,8 @@ public class CLIinterfejs {
 		}
 		
 		scan.close();
+		interrupt();
+		System.exit(0);
 			
 	}
 	
@@ -105,7 +110,7 @@ public class CLIinterfejs {
 			zapiszDo  = scan.nextLine();
 			
 		}while(!zapiszDo.equals("1") && !zapiszDo.equals("2"));
-		scan.close();
+		//scan.close();
 		
 		
 	}
@@ -315,6 +320,11 @@ public class CLIinterfejs {
 			{
 				wypiszPomoc();
 				break;
+			}
+			case "p":
+			{
+				return;
+				//break;
 			}
 			default:
 				{

@@ -256,7 +256,7 @@ public class XMLReaderWriter {
 	public void zapisz(DeskaRozdzielcza deska) throws Exception
 	{
 		XMLOutputFactory factory = XMLOutputFactory.newInstance();
-		XMLEventWriter eventWriter = factory.createXMLEventWriter(new FileOutputStream("output.xml"));
+		XMLEventWriter eventWriter = factory.createXMLEventWriter(new FileOutputStream("state.xml"));
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		XMLEvent end = eventFactory.createDTD("\n");
 		DTD tab = eventFactory.createDTD("\t");
