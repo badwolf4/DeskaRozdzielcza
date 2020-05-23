@@ -14,7 +14,7 @@ public class LicznikPrzebieguDziennego extends LicznikPrzebieguCalkowitego{
 	}
 	
 	/**
-	 * Metoda do wyzerowania pola przebieg
+	 * Wyzerowanie przebiegu
 	 */
 	public void wyzerujLicznik()
 	{

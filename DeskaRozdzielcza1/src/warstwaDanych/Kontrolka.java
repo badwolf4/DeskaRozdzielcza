@@ -8,7 +8,7 @@ public class Kontrolka {
 	private boolean wlaczona;
 	
 	/**
-	 * Konstruktor który będzie używany dla wszystkich dziedziczącym po tej klasie klas
+	 * Tworzenie nowej instancji klasy Kontrolka 
 	 * @param stan
 	 */
 	

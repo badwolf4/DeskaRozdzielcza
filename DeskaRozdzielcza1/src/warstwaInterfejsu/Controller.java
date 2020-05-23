@@ -149,10 +149,21 @@ public class Controller  {
 		System.out.println("Information have been saved"); });
 		
 		AboutItem.setOnAction(event ->{
-			 Label secondLabel = new Label("Autorzy: Viktoriia Voloszczenko i Anton Tkach\n\nDeska Rozdzielcza samochodu. Cos tu cos Vika sobaka kusaka");
+			 Label secondLabel = new Label("Klawisze: \n"
+			 		+ "Q - wlacz/wylacz kontrolke swiatel drogowych \n"
+					+ "E - wlacz/wylacz kontrolke swiatel mijania \n"
+			 		+ "Z - wlacz/wylacz kontrolke swiatel przeciwmgielnych przod \n"
+					+ "X - wlacz/wylacz kontrolke swiatel przeciwmgielnych tyl \n"
+			 		+ "C - wlacz/wylacz kontrolke swiatel pozycyjnych \n"
+					+ "U - wyzeruj licznik przebiegu dziennego \n"
+					+ "Gora - przyszpiesz \n"
+			 		+ "Dol - zwolnij \n"
+					+ "Lewo - wlacz/wylacz kontrolke lewego kierunkowskazu \n"
+			 		+ "Prawo - wlacz/wylacz kontrolke prawego kierunkowskazu"
+					);
 			 StackPane secondaryLayout = new StackPane();
 	         secondaryLayout.getChildren().add(secondLabel);
-	         Scene secondScene = new Scene(secondaryLayout, 400, 300);
+	         Scene secondScene = new Scene(secondaryLayout, 320, 200);
 	         Stage newWindow = new Stage();
 	         newWindow.setTitle("Second Stage");
 	         newWindow.setScene(secondScene);

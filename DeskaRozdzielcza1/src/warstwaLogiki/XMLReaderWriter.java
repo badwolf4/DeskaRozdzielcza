@@ -98,12 +98,12 @@ public class XMLReaderWriter {
                             if(String.valueOf(event.asCharacters()).equals("wlaczony"))
                             {
                             	stan = true;
-                            	System.out.println("wlaczony");
+                            	//System.out.println("wlaczony");
                             }
                        
                             else
                             	stan = false;
-                            System.out.println("Pobrany stan: " + stan);
+                            //System.out.println("Pobrany stan: " + stan);
                             deska.setStrzalka(0,stan);     
                             continue;
                         }

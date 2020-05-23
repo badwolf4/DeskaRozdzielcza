@@ -66,6 +66,9 @@ public class KomputerPokladowy {
 		return rez/i;
 	}
 	
+	//zamiast predkosci brac co 5 minut (naprzyklad) wyliczac srednia predkosc i dalej w metode niziej
+	//zapisac w druga tablice srednie wartosci spalania (mamy 2 tablicy 1 do wartosci predkosci, inna do 
+	//wartosci spalania w tym czasie co robiono pomiary dla pierwszej. wynik srednia z elementow drugej tablicy
 	double policzSpalanie(double predkosc) {
 		double litrowNa100km =10.0;
 		double mnoznik0=1.0;

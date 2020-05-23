@@ -87,8 +87,7 @@ public class CLIinterfejs extends Thread{
 	}
 	
 	/**
-	 * Metoda do wyświetlena początkowego menu zapewniającego użytkownikowi 
-	 * wybór skąd wczytać i dokąd zapisać dane aplikacji
+	 * Wyświetlenie startowego menu
 	 */
 	public void pokazStartMenu()
 	{
@@ -116,7 +115,7 @@ public class CLIinterfejs extends Thread{
 	}
 	
 	/**
-	 * Metoda służąca do wyświetlenia stanu deski rozdzielczej, całej jej zawartości
+	 * Wyświetlenie stanu deski
 	 */
 	
 	public void pokazStanDeski()
@@ -166,7 +165,7 @@ public class CLIinterfejs extends Thread{
 	}
 	
 	/**
-	 * Metoda do wyświetlenia pomocy dla trybu edycji
+	 * Wyświetlenie pomocy dla trybu edycji
 	 */
 	
 	public void wypiszPomoc()
@@ -185,7 +184,7 @@ public class CLIinterfejs extends Thread{
 	}
 	
 	/**
-	 * Metoda do modyfikacji zawartości deski rozdzielczej, tzw. tryb edycji
+	 * Modyfikacja zawartości deski rozdzielczej, tzw. tryb edycji
 	 */
 	public void trybEdycji()
 	{
@@ -336,7 +335,7 @@ public class CLIinterfejs extends Thread{
 	}
 	
 	/**
-	 * Metoda do zaokrąglenia wartości do dwu miejsc po przycinku przed wyświetlaniem na ekranie
+	 * Zaokrąglenie wartości do dwu miejsc po przycinku
 	 * @param input wartość która będzie poddana zaokrągleniu
 	 * @return double
 	 */

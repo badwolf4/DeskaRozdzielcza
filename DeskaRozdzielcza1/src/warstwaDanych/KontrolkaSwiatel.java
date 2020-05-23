@@ -15,9 +15,7 @@ public class KontrolkaSwiatel extends Kontrolka implements KontrolkaInterface {
 	}
 
 	/**
-	 * Nadpisana metoda interfejsu Kontrolka, zapewniająca zmianę stanu
-	 * pola klasy bazowej "wlaczona" na true tylko w przypadku jeśli bieżący 
-	 * stan jest false
+	 * Zmiana stanu kontrolki na true, jeśli jest false (włączenie kontrolkę)
 	 */
 	@Override
 	public void wlacz() {
@@ -27,9 +25,7 @@ public class KontrolkaSwiatel extends Kontrolka implements KontrolkaInterface {
 	}
 
 	/**
-	 * Nadpisana metoda interfejsu Kontrolka, zapewniająca zmianę stanu
-	 * pola klasy bazowej "wlaczona" na false tylko w przypadku jeśli bieżący 
-	 * stan jest true
+	 * Zmiana stanu kontrolki na false, jeśli jest true (wyłączenie kontrolkę)
 	 */
 	@Override
 	public void wylacz() {

@@ -18,7 +18,7 @@ public class LicznikPrzebieguCalkowitego {
 	}
 	
 	/**
-	 * Metoda dostępu do pola przebieg
+	 * Zwraca przebieg całkowity
 	 * @return double
 	 */
 	public double getPrzebieg()
@@ -26,6 +26,10 @@ public class LicznikPrzebieguCalkowitego {
 		return przebieg;
 	}
 	
+	/**
+	 * Zwiększa przebieg o podaną wartość(ile)
+	 * @param ile
+	 */
 	public void zwiekszPrzebieg(double ile)
 	{
 		przebieg+=ile;

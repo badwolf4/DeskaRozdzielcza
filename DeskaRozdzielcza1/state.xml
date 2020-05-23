@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <deska_rozdzielcza>
-	<predkosc>142.0</predkosc>
-	<przebieg_calkowity>54.26527777777777</przebieg_calkowity>
-	<przebieg_dzienny>4.265277777777779</przebieg_dzienny>
+	<predkosc>122.0</predkosc>
+	<przebieg_calkowity>55.51083333333332</przebieg_calkowity>
+	<przebieg_dzienny>5.5108333333333395</przebieg_dzienny>
 	<lewy_kierunkowskaz>wlaczony</lewy_kierunkowskaz>
 	<prawy_kierunkowskaz>wylaczony</prawy_kierunkowskaz>
 	<kontrolka_swiatel_pozycyjnych>wlaczony</kontrolka_swiatel_pozycyjnych>
@@ -11,10 +11,10 @@
 	<kontrolka_swiatel_przeciwmgielnych_przod>wlaczony</kontrolka_swiatel_przeciwmgielnych_przod>
 	<kontrolka_swiatel_przeciwmgielnych_tyl>wlaczony</kontrolka_swiatel_przeciwmgielnych_tyl>
 	<komputer_pokladowy>
-		<predkosc_srednia>9.596875000000004</predkosc_srednia>
+		<predkosc_srednia>10.226288659793827</predkosc_srednia>
 		<predkosc_maksymalna>174.0</predkosc_maksymalna>
-		<czas_podrozy>160.0</czas_podrozy>
-		<dystans>4.265277777777779</dystans>
+		<czas_podrozy>194.0</czas_podrozy>
+		<dystans>5.5108333333333395</dystans>
 		<srednie_spalanie>15.0</srednie_spalanie>
 	</komputer_pokladowy>
 </deska_rozdzielcza>

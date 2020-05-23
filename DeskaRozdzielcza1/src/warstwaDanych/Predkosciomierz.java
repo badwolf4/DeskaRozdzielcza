@@ -19,7 +19,7 @@ public class Predkosciomierz {
 	}
 	
 	/**
-	 * Metoda dostępu do pola predkość
+	 * Zwraca wartość pola predkość
 	 * @return double 
 	 */
 
@@ -28,7 +28,7 @@ public class Predkosciomierz {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole predkość Zwiększa wartość pola o 1
+	 * Zwiększenie prędkośći o 1
 	 * @throws OsiagnietaMaksymalnaSzybkoscException rzuca wyjątek przy spróbie przekroczyć 280
 	 */
 
@@ -39,7 +39,7 @@ public class Predkosciomierz {
 	}
 
 	/**
-	 * Metoda modyfikująca pole predkość.Zmniejsza wartość pola o 1
+	 * Zmniejszenie prędkośći o 1
 	 * @throws OsiagnietaMinimalnaSzybkoscException rzuca wyjątek przy spróbie przekroczyć 0
 	 */
 	public void zwolnij() throws OsiagnietaMinimalnaSzybkoscException {
@@ -49,7 +49,7 @@ public class Predkosciomierz {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole predkość.Zmniejsza wartość pola o 5
+	 * Zwiększenie prędkośći o 5
 	 * @throws OsiagnietaMinimalnaSzybkoscException rzuca wyjątek przy spróbie przekroczyć 0
 	 */
 
