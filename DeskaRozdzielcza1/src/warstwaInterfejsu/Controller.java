@@ -16,6 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -146,6 +147,12 @@ public class Controller  {
 			  dbHandler.usunZBD();
 			  dbHandler.zapisacDoBD(deska);
 		System.out.println("Information have been saved"); });
+		
+		//Accelatory dla menu
+		AboutItem.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+		menuBarClose.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+		zapiszDoXMLItem.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+		TEST.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
 		
 		AboutItem.setOnAction(event ->{
 			 Label secondLabel = new Label("Klawisze: \n"
