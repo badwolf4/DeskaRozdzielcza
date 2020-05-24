@@ -72,6 +72,10 @@ public class KomputerPokladowy {
 	private ArrayList<Double> pomiaryPredkosci;
 	private ArrayList<Double> srednieSpalania;
 	
+	/**
+	 * Obliczanie spalania na podstawie sredniej z 60 pomiarow predkosci
+	 * @return
+	 */
 	private double obliczSpalanie()
 	{
 		double p = 0.0;
@@ -105,6 +109,12 @@ public class KomputerPokladowy {
 	//zamiast predkosci brac co 5 minut (naprzyklad) wyliczac srednia predkosc i dalej w metode niziej
 	//zapisac w druga tablice srednie wartosci spalania (mamy 2 tablicy 1 do wartosci predkosci, inna do 
 	//wartosci spalania w tym czasie co robiono pomiary dla pierwszej. wynik srednia z elementow drugej tablicy
+	
+	/**
+	 * Obliczanie średniego spalania za minutę
+	 * @param predkosc prędkość średnia z 60 pomiarów 
+	 * @return
+	 */
 	private double policzSpalanie(double predkosc) {
 		double litrowNa100km =10.0;
 		double mnoznik0=1.0;
