@@ -61,7 +61,7 @@ public class KomputerPokladowy {
     	//setSrednieSpalanie(arraySpalania(predkosc)); 
     	pomiar++;
     	pomiaryPredkosci.add(predkosc);
-    	System.out.println("predkosc / speed: " + predkosc);
+    	//System.out.println("predkosc / speed: " + predkosc);
     	if(pomiar==60)
     	{
     		setSrednieSpalanie(obliczSpalanie());
@@ -81,7 +81,7 @@ public class KomputerPokladowy {
 		double p = 0.0;
 		for(double i : pomiaryPredkosci)
 			p+=i;
-		System.out.println("srednie spalanie / Avarage  fuel consuming: " + policzSpalanie(p/60));
+		//System.out.println("srednie spalanie / Avarage  fuel consuming: " + policzSpalanie(p/60));
 		srednieSpalania.add(policzSpalanie(p/60));
 		pomiaryPredkosci.clear();
 		pomiar=0;
@@ -89,9 +89,9 @@ public class KomputerPokladowy {
 		for(double i : srednieSpalania)
 			{
 				l+=i;
-				System.out.println("Poprzednia srednia / All values of fuel consuming: " + i);
+				//System.out.println("Poprzednia srednia / All values of fuel consuming: " + i);
 			}
-		System.out.println("Nowa srednia / New average: " + l/srednieSpalania.size());
+		//System.out.println("Nowa srednia / New average: " + l/srednieSpalania.size());
 		return l/srednieSpalania.size();
 	}
 	
