@@ -55,7 +55,7 @@ public class KomputerPokladowy {
 		
 		setCzasPodrozy(getCzasPodrozy()+sekundy);
     	setDystans(getDystans()+ dystans1);
-    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/360));
+    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/3600));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
     	//setSrednieSpalanie(arraySpalania(predkosc)); 

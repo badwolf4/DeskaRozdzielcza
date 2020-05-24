@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -163,7 +164,8 @@ public class Controller  {
 	         secondaryLayout.getChildren().add(secondLabel);
 	         Scene secondScene = new Scene(secondaryLayout, 320, 200);
 	         Stage newWindow = new Stage();
-	         newWindow.setTitle("Second Stage");
+	         newWindow.setTitle("About");
+	         newWindow.getIcons().add(new Image("warstwaInterfejsu/icon.png"));
 	         newWindow.setScene(secondScene);
 	         newWindow.show();
 		 });
@@ -439,19 +441,26 @@ public class Controller  {
 	/**
 	 * Odświeżenie zawartości elementów okienka
 	 */
+	
+	public String timeString(int totalSecs) {
+		int hours = totalSecs / 3600;
+		int minutes = (totalSecs % 3600) / 60;
+		int seconds = totalSecs % 60;
+		return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+	}
 
 	void refreash() {
 		przebiegCalkowity.setText(Double.toString(bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg())));
 
 		przebiegDzienny.setText(Double.toString(bd(deska.getLicznikPrzebieguDziennego().getPrzebieg())));
 
-		czasPodrorzy.setText(Double.toString(bd(deska.getKomputerPokladowy().getCzasPodrozy())));
+		czasPodrorzy.setText(timeString((int)bd(deska.getKomputerPokladowy().getCzasPodrozy())));
 
 		dystans.setText(Double.toString(bd(deska.getKomputerPokladowy().getDystans())));
 
 		spalanie.setText(Double.toString(bd(deska.getKomputerPokladowy().getSrednieSpalanie())));
 
-		srednia.setText(Double.toString(bd(deska.getKomputerPokladowy().getPredkoscSrednia())));
+		srednia.setText(Double.toString(dd(deska.getKomputerPokladowy().getPredkoscSrednia())));
 
 		maksymalna.setText(Integer.toString((int)Math.round(deska.getKomputerPokladowy().getPredkoscMaksymalna())));
 
@@ -492,4 +501,9 @@ public class Controller  {
 	public double bd(double input) {
 		return new BigDecimal(input).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
+	
+	public double dd(double input) {
+		return new BigDecimal(input).setScale(1, RoundingMode.HALF_UP).doubleValue();
+	}
+	
 }

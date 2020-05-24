@@ -109,12 +109,12 @@
                               <Font name="Yu Gothic Regular" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="13.0" layoutY="77.0" text="Czas Podróży">
+                        <Label layoutX="13.0" layoutY="112.0" text="Czas Podróży">
                            <font>
                               <Font name="Yu Gothic Regular" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="112.0" text="Dystans">
+                        <Label layoutX="15.0" layoutY="79.0" text="Dystans">
                            <font>
                               <Font name="Yu Gothic Regular" size="14.0" />
                            </font>
@@ -124,47 +124,82 @@
                               <Font name="Yu Gothic Regular" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="przebiegCalkowity" layoutX="132.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
-                        <TextField fx:id="przebiegDzienny" layoutX="132.0" layoutY="42.0" prefHeight="25.0" prefWidth="87.0" />
-                        <TextField fx:id="czasPodrorzy" layoutX="132.0" layoutY="73.0" prefHeight="25.0" prefWidth="87.0" />
-                        <TextField fx:id="dystans" layoutX="132.0" layoutY="107.0" prefHeight="25.0" prefWidth="87.0" />
-                        <TextField fx:id="spalanie" layoutX="132.0" layoutY="166.0" prefHeight="25.0" prefWidth="87.0" />
+                        <TextField fx:id="przebiegCalkowity" alignment="CENTER" layoutX="132.0" layoutY="10.0" prefHeight="25.0" prefWidth="43.0" />
+                        <TextField fx:id="przebiegDzienny" alignment="CENTER" layoutX="132.0" layoutY="42.0" prefHeight="25.0" prefWidth="43.0" />
+                        <TextField fx:id="czasPodrorzy" alignment="CENTER" layoutX="121.0" layoutY="107.0" prefHeight="25.0" prefWidth="65.0" />
+                        <TextField fx:id="dystans" alignment="CENTER" layoutX="132.0" layoutY="74.0" prefHeight="25.0" prefWidth="43.0" />
+                        <TextField fx:id="spalanie" alignment="CENTER" layoutX="95.0" layoutY="166.0" prefHeight="25.0" prefWidth="43.0" />
+                        <Label layoutX="160.0" layoutY="170.0" text="L/100km">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="191.0" layoutY="79.0" text="km">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="191.0" layoutY="17.0" text="km">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="191.0" layoutY="47.0" text="km">
+                           <font>
+                              <Font name="Yu Gothic Regular" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Label layoutX="80.0" layoutY="121.0" text="Prędkość">
+            <Label layoutX="78.0" layoutY="14.0" text="Prędkość">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
-            <Label layoutX="628.0" layoutY="45.0" text="Średnia">
+            <Label layoutX="628.0" layoutY="45.0" text="AVG">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="628.0" layoutY="122.0" text="Maksymalna">
+            <Label layoutX="628.0" layoutY="122.0" text="MAX">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="srednia" layoutX="753.0" layoutY="25.0" prefHeight="69.0" prefWidth="122.0" text="0">
+            <TextField fx:id="srednia" alignment="CENTER" layoutX="692.0" layoutY="26.0" prefHeight="69.0" prefWidth="122.0" text="0">
                <font>
                   <Font size="32.0" />
                </font>
             </TextField>
-            <TextField fx:id="maksymalna" layoutX="753.0" layoutY="102.0" prefHeight="69.0" prefWidth="122.0" text="0">
+            <TextField fx:id="maksymalna" alignment="CENTER" layoutX="692.0" layoutY="103.0" prefHeight="69.0" prefWidth="122.0" text="0">
                <font>
                   <Font size="32.0" />
                </font>
             </TextField>
-            <TextField fx:id="predkosc" layoutX="75.0" layoutY="20.0" prefHeight="108.0" prefWidth="150.0" text="0">
+            <TextField fx:id="predkosc" alignment="CENTER" layoutX="53.0" layoutY="74.0" prefHeight="108.0" prefWidth="150.0" text="0">
                <font>
                   <Font size="51.0" />
                </font>
             </TextField>
             <Button fx:id="zapiszDoBDButton" layoutX="310.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz do Bazy Danych" />
             <Button fx:id="zapiszDoXMLButton" layoutX="505.0" layoutY="20.0" mnemonicParsing="false" text="Zapisz do XML" />
+            <Label layoutX="218.0" layoutY="111.0" text="km/h">
+               <font>
+                  <Font name="Yu Gothic Regular" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="821.0" layoutY="43.0" text="km/h">
+               <font>
+                  <Font name="Yu Gothic Regular" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="821.0" layoutY="120.0" text="km/h">
+               <font>
+                  <Font name="Yu Gothic Regular" size="29.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="287.0" layoutY="25.0" prefHeight="52.0" prefWidth="327.0" text="Deska Rozdzielcza" textFill="#fafafa">

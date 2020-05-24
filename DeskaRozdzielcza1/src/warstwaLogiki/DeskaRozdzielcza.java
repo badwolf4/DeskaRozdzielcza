@@ -90,7 +90,7 @@ public class DeskaRozdzielcza {
 			    	try {
 						predkosciomierz.zwolnij();
 					} catch (OsiagnietaMinimalnaSzybkoscException e) {
-						e.printStackTrace();
+						e.getMessage();
 					}
 			    }
 

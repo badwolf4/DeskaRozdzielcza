@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -86,6 +87,8 @@ public class ControllerWejscia {
 				Parent root = loader.getRoot();
 				Stage stage = new Stage();
 				stage.setScene(new Scene(root));
+				stage.setTitle("Bugatti");
+				stage.getIcons().add(new Image("warstwaInterfejsu/icon.png"));
 				stage.show();
 				stage.setOnCloseRequest(e -> {
 					Platform.exit();
