@@ -23,7 +23,7 @@ public class DeskaRozdzielcza {
 	KomputerPokladowy komputer;
 	
 	/**
-	 * Metoda do tworzenia nowej instancji klasy DeskaRozdzielcza, bezparametrowa
+	 * Tworzenie nowej instancji klasy DeskaRozdzielcza, bezparametrowa
 	 */
 	public DeskaRozdzielcza()
 	{
@@ -39,7 +39,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda do tworzenia nowej instancji klasy DeskaRozdzielcza
+	 * Tworzenia nowej instancji klasy DeskaRozdzielcza
 	 * @param predkosciomierz predkosciomierz
 	 * @param przebiegCalkowity licznik przebiegu całkowitego
 	 * @param przebiegDzienny licznik przebiegu dziennego
@@ -75,7 +75,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda która uruchamia nowy wątek odświeżające parametry uzależnione od czasu co 1 sekundę
+	 * Uruchomienie wątku do aktualizacji danych w desce
 	 */
 	public void start()
 	{
@@ -102,7 +102,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda do obliczania aktualizowanych danych
+	 * Obliczenie aktualizowanych danych
 	 */
 	public void refreashDeska()
 	{
@@ -117,7 +117,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole predkościomierz
+	 * Zamienia objekt predkościomierz
 	 * @param p nowy obiekt reprezentujący pole predkosciomierz
 	 */
 	public void setPredkosciomierz(Predkosciomierz p)
@@ -126,7 +126,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do pola predkościomierz
+	 * Zwraca Predkosciomierz
 	 * @return Predkoscomierz
 	 */
 	public Predkosciomierz getPredkosciomierz()
@@ -135,7 +135,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole przebiegCalkowity
+	 * Zamienia objekt przebiegCalkowity
 	 * @param p nowy obiekt reprezentujący pole przebiegCalkowity
 	 */
 	public void setLicznikPrzebieguCalkowitego(LicznikPrzebieguCalkowitego p)
@@ -144,7 +144,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do pola przebiegCalkowity
+	 * Zwraca przebiegCalkowity
 	 * @return LicznikPrzebieguCalkowitego
 	 */
 	public LicznikPrzebieguCalkowitego getLicznikPrzebieguCalkowitego()
@@ -153,7 +153,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole przebiegDzienny
+	 * Zamienia objekt przebiegDzienny
 	 * @param p nowy obiekt reprezentujący pole przebiegDzienny
 	 */
 	public void setLicznikPrzebieguDziennego(LicznikPrzebieguDziennego p)
@@ -162,7 +162,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do pola przebiegDzienny
+	 * Zwraca przebiegDzienny
 	 * @return LicznikPrzebieguDziennego
 	 */
 	public LicznikPrzebieguDziennego getLicznikPrzebieguDziennego()
@@ -171,7 +171,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole komputer
+	 * Zamienia objekt komputer
 	 * @param p nowy obiekt reprezentujący pole komputer
 	 */
 	public void setKomputerPokladowy(KomputerPokladowy p)
@@ -180,7 +180,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do pola komputer
+	 * Zwraca komputer
 	 * @return KomputerPokladowy
 	 */
 	public KomputerPokladowy getKomputerPokladowy()
@@ -189,7 +189,7 @@ public class DeskaRozdzielcza {
 	}
 
 	/**
-	 * Metoda zamieniająca obiekt KontrolkaSwiatel na odpowiedniej pozycji, reprezentujący odpowiednią kontrolkę świateł
+	 * Zamienia obiekt KontrolkaSwiatel na odpowiedniej pozycji, reprezentujący odpowiednią kontrolkę świateł
 	 * pozycyjnych, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
 	 * @param n pozycja na liście
 	 * @param stan stan nowoutworzonej kontrolki swiatla
@@ -201,8 +201,8 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do obiektów z ArrayLIst swiatla 
-	 * pozycyjnych, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
+	 * Zwraca obiekt z ArrayLIst swiatla w kolejności
+	 * pozycyjne, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
 	 * @param n pozycja na liście
 	 * @return KontrolkaSwiatel obiekt z listy
 	 */
@@ -212,8 +212,8 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda zamieniająca obiekt KontrolkaKierunkowskazu na odpowiedniej pozycji, reprezentujący odpowiednią kotrolkę kirunkowskazu
-	 * lewa, prawa
+	 * Zamienia obiekt KontrolkaKierunkowskazu na odpowiedniej pozycji, reprezentujący odpowiednią kotrolkę kirunkowskazu
+	 * w kolejności: lewa, prawa
 	 * @param n pozycja na liście
 	 * @param stan stan kontrolki
 	 */
@@ -223,7 +223,7 @@ public class DeskaRozdzielcza {
 	}
 	
 	/**
-	 * Metoda dostępu do obiektów z ArrayLIst strzalki
+	 * Zwraca obiekt z ArrayLIst strzalki reprezentujące kierunkowskazy w kolejności: lewy, prawy
 	 * @param n pozycja na liście
 	 * @return KontrolkaKierunkowskazu
 	 */

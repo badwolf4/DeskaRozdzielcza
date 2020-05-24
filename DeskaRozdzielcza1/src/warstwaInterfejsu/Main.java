@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	/**
-	 * Metoda do załadowania widoku aplikacji z plików zródłowych
+	 * Załadowanie okienek interfejsu graficznego aplikacji
 	 */
 	@Override
 	public void start(Stage primaryStage) 
@@ -28,7 +28,7 @@ public class Main extends Application {
 	
 	/**
 	 * Główna metoda main aplikacji
-	 * @param args
+	 * @param args parametry staru aplikacji
 	 */
 	public static void main(String[] args) {
 		launch(args);

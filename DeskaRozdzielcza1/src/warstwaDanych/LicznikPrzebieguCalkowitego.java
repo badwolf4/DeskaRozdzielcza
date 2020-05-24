@@ -10,7 +10,7 @@ public class LicznikPrzebieguCalkowitego {
 	
 	/**
 	 * Tworzenie nowej instancji klasy LIcznikPrzebieguCałkowitego
-	 * @param p
+	 * @param p początkowa wartość przebiegu
 	 */
 	public LicznikPrzebieguCalkowitego(double p)
 	{
@@ -28,7 +28,7 @@ public class LicznikPrzebieguCalkowitego {
 	
 	/**
 	 * Zwiększa przebieg o podaną wartość(ile)
-	 * @param ile
+	 * @param ile wartość o którą zwiększamy przebieg
 	 */
 	public void zwiekszPrzebieg(double ile)
 	{

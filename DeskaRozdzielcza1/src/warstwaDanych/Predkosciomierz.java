@@ -12,7 +12,7 @@ public class Predkosciomierz {
 
 	/**
 	 * Tworzenie nowej instancji obiektu klasy Predkosciomierz
-	 * @param d
+	 * @param d początkowa prędkość
 	 */
 	public Predkosciomierz(double d) {
 		predkosc = d;

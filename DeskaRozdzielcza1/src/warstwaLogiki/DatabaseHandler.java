@@ -18,14 +18,14 @@ public class DatabaseHandler{
 Connection dbConnection;
 
 /**
- * Metoda do tworzenia nowej instanji klasy DatabaseHandler 
+ * Tworzenie nowej instanji klasy DatabaseHandler 
  */
 public DatabaseHandler(){ }
 /**
- * Metoda służąca do nawiązania połączenia z bazą danych
+ * Nawiązanie połączenia z bazą danych
  * @return Connection obiekt pośredniczący między aplikacją a bazą danych
  * @throws ClassNotFoundException wyjątek rzucany w przypadku kiedy nie znaleziono w systemie sterownika do nawiązania połączenia
- * @throws SQLException 
+ * @throws SQLException wyjątek biblioteczny
  */
 public Connection getDbConnection() 
 		throws ClassNotFoundException, SQLException {
@@ -37,7 +37,7 @@ public Connection getDbConnection()
 		}
 
 /**
- * Metoda do wczytania danych z bazy danych
+ * Wczytanie danych z bazy danych
  * @return DeskaRozdzielcza obiekt służący do przechowywania danych wewnątrz działającej aplikacji
  */
 public DeskaRozdzielcza wczytajZBD() {
@@ -74,7 +74,7 @@ public DeskaRozdzielcza wczytajZBD() {
 }
 
 /**
- * Metoda do czyszczenia starych danych przed zapisem nowych
+ * Czyszczenie starych danych przed zapisem nowych
  */
 public void usunZBD() {
 	String delete = "TRUNCATE "+Const.tablica;
@@ -91,7 +91,7 @@ public void usunZBD() {
 }
 
 /**
- * Metoda do zapisania danych do bazy danych
+ * Zapis danych do bazy danych
  * @param deska obiekt z ktorego dane zostaną zapisane do bazy danych
  */
 public void zapisacDoBD(DeskaRozdzielcza deska) {

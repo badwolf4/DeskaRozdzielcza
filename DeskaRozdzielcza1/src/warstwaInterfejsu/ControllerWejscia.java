@@ -46,7 +46,7 @@ public class ControllerWejscia {
 	boolean wybor = false;
     
 	/**
-	 * Metoda wywoływana przy załadowaniu widoku okienka
+	 * Konfiguracja i obsługa elementów okienka
 	 */
     @FXML
     void initialize() {

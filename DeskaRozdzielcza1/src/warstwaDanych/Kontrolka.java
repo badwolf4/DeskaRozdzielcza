@@ -9,7 +9,7 @@ public class Kontrolka {
 	
 	/**
 	 * Tworzenie nowej instancji klasy Kontrolka 
-	 * @param stan
+	 * @param stan początkowy stan kontrolki
 	 */
 	
 	public Kontrolka(boolean stan) {

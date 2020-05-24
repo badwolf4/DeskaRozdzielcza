@@ -1,5 +1,7 @@
 package warstwaLogiki;
 
+import java.util.ArrayList;
+
 /**
  * Klasa reprezentująca komputer pokładowy samochodu
  */
@@ -11,38 +13,44 @@ public class KomputerPokladowy {
 	private double srednieSpalanie;
 	
 	/**
-	 * Metoda do tworzenia nowej instancji klasy KomputerPokladowy
+	 * Tworzenie nowej instancji klasy KomputerPokladowy
 	 * @param ps predkość średnia
 	 * @param pm predkość maksymalna
 	 * @param czp czas podrozy
 	 * @param d dystans 
 	 * @param ss średnie spalanie
 	 */
-	KomputerPokladowy(double ps, double pm, double czp, double d, double ss)
+	public KomputerPokladowy(double ps, double pm, double czp, double d, double ss)
 	{
 		predkoscSrednia = ps;
 		predkoscMaksymalna = pm;
 		czasPodrozy = czp;
 		dystans = d;
 		srednieSpalanie = ss;
+		
+		pomiaryPredkosci = new ArrayList<Double>();
+		srednieSpalania = new ArrayList<Double>();
+		
+		srednieSpalania.add(ss);
 	}
 	
 	/**
-	 * Metoda do tworzenia nowej instancji klasy KomputerPokladowy, bezparametrowa
+	 * Tworzenie nowej instancji klasy KomputerPokladowy
 	 */
 	public KomputerPokladowy()
 	{
-		
+		pomiaryPredkosci = new ArrayList<Double>();
+		srednieSpalania = new ArrayList<Double>();
 	}
 	
 	/**
-	 * Metoda do odświeżenia zawartości pól obiektu klasy
+	 * Odświeżenie zawartości pól obiektu klasy
 	 * @param sekundy czas w sekundach
 	 * @param godziny czas w godzinach
 	 * @param dystans1 dystans pokonany w tym czasie
 	 * @param predkosc nowa prędkość
 	 */
-	void refreashKomputer(double sekundy, double godziny, double dystans1, double predkosc)
+	public void refreashKomputer(double sekundy, double godziny, double dystans1, double predkosc)
 	{
 		
 		setCzasPodrozy(getCzasPodrozy()+sekundy);
@@ -50,26 +58,54 @@ public class KomputerPokladowy {
     	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/360));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
-    	setSrednieSpalanie(arraySpalania(predkosc)); 
+    	//setSrednieSpalanie(arraySpalania(predkosc)); 
+    	pomiar++;
+    	pomiaryPredkosci.add(predkosc);
+    	System.out.println("predkosc / speed: " + predkosc);
+    	if(pomiar==60)
+    	{
+    		setSrednieSpalanie(obliczSpalanie());
+    	}
+    	
+	}
+	private int pomiar=0;
+	private ArrayList<Double> pomiaryPredkosci;
+	private ArrayList<Double> srednieSpalania;
+	
+	private double obliczSpalanie()
+	{
+		double p = 0.0;
+		for(double i : pomiaryPredkosci)
+			p+=i;
+		System.out.println("srednie spalanie / Avarage  fuel consuming: " + policzSpalanie(p/60));
+		srednieSpalania.add(policzSpalanie(p/60));
+		pomiaryPredkosci.clear();
+		pomiar=0;
+		double l = 0.0;
+		for(double i : srednieSpalania)
+			{
+				l+=i;
+				System.out.println("Poprzednia srednia / All values of fuel consuming: " + i);
+			}
+		System.out.println("Nowa srednia / New average: " + l/srednieSpalania.size());
+		return l/srednieSpalania.size();
 	}
 	
-	int i=0;
-	double rez=0.0;
+//	int i=0;
+//	double rez=0.0;
 	
-	double arraySpalania(double predkosc) {
-		
-		i++;
-		//System.out.println("i="+i);
-		double spalanie = policzSpalanie(predkosc);
-		//System.out.println("policzSpalanie="+rez);
-		rez+=spalanie;
-		return rez/i;
-	}
+//	double arraySpalania(double predkosc) {
+//		
+//		i++;
+//		double spalanie = policzSpalanie(predkosc);
+//		rez+=spalanie;
+//		return rez/i;
+//	}
 	
 	//zamiast predkosci brac co 5 minut (naprzyklad) wyliczac srednia predkosc i dalej w metode niziej
 	//zapisac w druga tablice srednie wartosci spalania (mamy 2 tablicy 1 do wartosci predkosci, inna do 
 	//wartosci spalania w tym czasie co robiono pomiary dla pierwszej. wynik srednia z elementow drugej tablicy
-	double policzSpalanie(double predkosc) {
+	private double policzSpalanie(double predkosc) {
 		double litrowNa100km =10.0;
 		double mnoznik0=1.0;
 		double mnoznikNiski=0.5;
@@ -93,7 +129,7 @@ public class KomputerPokladowy {
 	}
 	
 	/**
-	 * Metoda modyfikująca pole predkoscSrednia
+	 * Zamiana zawartości pola predkoscSrednia
 	 * @param p nowa predkość srednia
 	 */
 	public void setPredkoscSrednia(double p)
@@ -101,7 +137,7 @@ public class KomputerPokladowy {
 		predkoscSrednia = p;
 	}
 	/**
-	 * Metoda modyfikująca pole predkoscMaksymalna
+	 * Zamiana zawartości pola predkoscMaksymalna
 	 * @param p nowa predkość maksymalna
 	 */
 	public void setPredkoscMaksymalna(double p)
@@ -109,7 +145,7 @@ public class KomputerPokladowy {
 		predkoscMaksymalna= p;
 	}
 	/**
-	 * Metoda modyfikująca pole czasPodrozy
+	 * Zamiana zawartości pola czasPodrozy
 	 * @param p nowy czas podróży
 	 */
 	public void setCzasPodrozy(double p)
@@ -117,7 +153,7 @@ public class KomputerPokladowy {
 		czasPodrozy = p;
 	}
 	/**
-	 * Metoda modyfikująca pole dystans
+	 * Zamiana zawartości pola dystans
 	 * @param p nowy dystans
 	 */
 	public void setDystans(double p)
@@ -125,15 +161,16 @@ public class KomputerPokladowy {
 		dystans = p;
 	}
 	/**
-	 * Metoda modyfikująca pole srednieSpalanie
+	 * Zamiana zawartości pola srednieSpalanie
 	 * @param p nowe średnie spalanie
 	 */
 	public void setSrednieSpalanie(double p)
 	{
 		srednieSpalanie = p;
+		srednieSpalania.add(p);
 	}
 	/**
-	 * Metoda dostępu do pola predkoscSrednia
+	 * Zwraca predkoscSrednia
 	 * @return double
 	 */
 	public double getPredkoscSrednia()
@@ -141,7 +178,7 @@ public class KomputerPokladowy {
 		return predkoscSrednia;
 	}
 	/**
-	 * Metoda dostępu do pola predkoscMaksymalna
+	 * Zwraca predkoscMaksymalna
 	 * @return double
 	 */
 	public double getPredkoscMaksymalna()
@@ -149,7 +186,7 @@ public class KomputerPokladowy {
 		return predkoscMaksymalna;
 	}
 	/**
-	 * Metoda dostępu do pola czasPodrozy
+	 * Zwraca czasPodrozy
 	 * @return double
 	 */
 	public double getCzasPodrozy()
@@ -157,7 +194,7 @@ public class KomputerPokladowy {
 		return czasPodrozy;
 	}
 	/**
-	 * Metoda dostępu do pola dystans
+	 * Zwraca dystans
 	 * @return double
 	 */
 	public double getDystans()
@@ -165,7 +202,7 @@ public class KomputerPokladowy {
 		return dystans;
 	}
 	/**
-	 * Metoda dostępu do pola srednieSpalanie
+	 * Zwraca srednieSpalanie
 	 * @return double
 	 */
 	public double getSrednieSpalanie()

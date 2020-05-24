@@ -27,12 +27,12 @@ import warstwaDanych.Predkosciomierz;
  */
 public class XMLReaderWriter {
 	/**
-	 * Metoda do tworzenie nowej instancji klasu XMLReaderWriter
+	 * Tworzenie nowej instancji klasu XMLReaderWriter
 	 */
 	public XMLReaderWriter(){ }
 	
 	/**
-	 * Metoda do odczytu z pliku xml
+	 * Odczyt z pliku xml o podanej nazwie
 	 * @param file nazwa pliku
 	 * @return DeskaRozdzielcza
 	 */
@@ -249,9 +249,9 @@ public class XMLReaderWriter {
 	}
 	
 	/**
-	 * Metoda do zapisu do pliku xml
+	 * Zapisu do pliku state.xml
 	 * @param deska obiekt którego stan zostanie zapisany
-	 * @throws Exception
+	 * @throws Exception wyjątek biblioteczny
 	 */
 	public void zapisz(DeskaRozdzielcza deska) throws Exception
 	{
@@ -341,7 +341,7 @@ public class XMLReaderWriter {
 	}
 	
 	/**
-	 * Metoda do tworzenia węzła w xml
+	 * Tworzenie węzła w xml
 	 * @param eventWriter
 	 * @param name
 	 * @param value

@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -123,8 +122,7 @@ public class Controller  {
 	}
 	
 	/**
-	 * Metoda wywoływana podczas startu widoku. Służy do ustawienia parametrów dla elementów widoku:
-	 *  obsługa przycisków, start wątku odświeżającego interfejsc co sekundę. Wczytanie początkowego stanu widoku
+	 * Ustawienie konfiguracji i obsługi elementów okienka
 	 */
 	
 	@FXML
@@ -181,7 +179,6 @@ public class Controller  {
 			try {
 				xmlInterpretor.zapisz(deska);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Nie udalo sie zapisac do XML. Prosze o skorzystanie sie z innej opcji.");
 			}
@@ -200,7 +197,6 @@ public class Controller  {
 			try {
 				xmlInterpretor.zapisz(deska);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Nie udalo sie zapisac do XML. Prosze o skorzystanie sie z innej opcji.");
 			}
@@ -288,12 +284,12 @@ public class Controller  {
 	}
 
 	/**
-	 * Metoda zapewniająca obsługę zdarzeń klawiatuwy
+	 * Obsługa wciśnienia klawiszy
 	 * @param event klawisz który został wciśnięty
 	 */
 	@FXML
 	void handleOnKeyPressed(KeyEvent event) {
-		System.out.println("Klawisz wcisnieto");
+		//System.out.println("Klawisz wcisnieto");
 		// strzalki
 
 		if (event.getCode() == KeyCode.LEFT) {
@@ -441,7 +437,7 @@ public class Controller  {
 	}
 	
 	/**
-	 * Metoda odświeżająca interfejsc graficzny aplikacji
+	 * Odświeżenie zawartości elementów okienka
 	 */
 
 	void refreash() {
@@ -462,33 +458,33 @@ public class Controller  {
 		predkosc.setText(Integer.toString((int)Math.round(deska.getPredkosciomierz().getPredkosc())));
 
 		if (deska.getSwiatlo(0).getWlaczona())
-			swiatloDrogowe.setFill(Color.BLUE);
+			swiatloDrogowe.setFill(Color.GREEN);
 		else
 			swiatloDrogowe.setFill(Color.WHITE);
 
 		if (deska.getSwiatlo(1).getWlaczona())
-			swiatloMijania.setFill(Color.YELLOW);
+			swiatloMijania.setFill(Color.GREEN);
 		else
 			swiatloMijania.setFill(Color.WHITE);
 
 		if (deska.getSwiatlo(2).getWlaczona())
-			swiatloPrzod.setFill(Color.BLUE);
+			swiatloPrzod.setFill(Color.GREEN);
 		else
 			swiatloPrzod.setFill(Color.WHITE);
 
 		if (deska.getSwiatlo(3).getWlaczona())
-			swiatloTyl.setFill(Color.YELLOW);
+			swiatloTyl.setFill(Color.GREEN);
 		else
 			swiatloTyl.setFill(Color.WHITE);
 
 		if (deska.getSwiatlo(4).getWlaczona())
-			swiatloPozycyjne.setFill(Color.RED);
+			swiatloPozycyjne.setFill(Color.GREEN);
 		else
 			swiatloPozycyjne.setFill(Color.WHITE);
 	}
 	
 	/**
-	 * Metoda do zaokrąglenia wartości do dwu miejsc po przycinku przed wyświetlaniem na ekranie
+	 * Zaokrąglenie wartości do dwu miejsc po przycinku przed wyświetlaniem na ekranie
 	 * @param input wartość która będzie poddana zaokrągleniu
 	 * @return double
 	 */
