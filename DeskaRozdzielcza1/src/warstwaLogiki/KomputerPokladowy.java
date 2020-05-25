@@ -58,10 +58,8 @@ public class KomputerPokladowy {
     	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/3600));
     	if(getPredkoscMaksymalna() < predkosc)
     		setPredkoscMaksymalna(predkosc);
-    	//setSrednieSpalanie(arraySpalania(predkosc)); 
     	pomiar++;
     	pomiaryPredkosci.add(predkosc);
-    	//System.out.println("predkosc / speed: " + predkosc);
     	if(pomiar==60)
     	{
     		setSrednieSpalanie(obliczSpalanie());
@@ -81,7 +79,6 @@ public class KomputerPokladowy {
 		double p = 0.0;
 		for(double i : pomiaryPredkosci)
 			p+=i;
-		//System.out.println("srednie spalanie / Avarage  fuel consuming: " + policzSpalanie(p/60));
 		srednieSpalania.add(policzSpalanie(p/60));
 		pomiaryPredkosci.clear();
 		pomiar=0;
@@ -89,26 +86,9 @@ public class KomputerPokladowy {
 		for(double i : srednieSpalania)
 			{
 				l+=i;
-				//System.out.println("Poprzednia srednia / All values of fuel consuming: " + i);
 			}
-		//System.out.println("Nowa srednia / New average: " + l/srednieSpalania.size());
 		return l/srednieSpalania.size();
 	}
-	
-//	int i=0;
-//	double rez=0.0;
-	
-//	double arraySpalania(double predkosc) {
-//		
-//		i++;
-//		double spalanie = policzSpalanie(predkosc);
-//		rez+=spalanie;
-//		return rez/i;
-//	}
-	
-	//zamiast predkosci brac co 5 minut (naprzyklad) wyliczac srednia predkosc i dalej w metode niziej
-	//zapisac w druga tablice srednie wartosci spalania (mamy 2 tablicy 1 do wartosci predkosci, inna do 
-	//wartosci spalania w tym czasie co robiono pomiary dla pierwszej. wynik srednia z elementow drugej tablicy
 	
 	/**
 	 * Obliczanie średniego spalania za minutę

@@ -113,6 +113,7 @@ public class Controller  {
 	private DeskaRozdzielcza deska = null;
 	private Timer t;
 	private boolean flag;
+	private boolean deskaWlaczona = false;
 
 	/**
 	 * Tworzenie nowej instancji klasy Controller
@@ -162,14 +163,15 @@ public class Controller  {
 					+ "X - wlacz/wylacz kontrolke swiatel przeciwmgielnych tyl \n"
 			 		+ "C - wlacz/wylacz kontrolke swiatel pozycyjnych \n"
 					+ "U - wyzeruj licznik przebiegu dziennego \n"
-					+ "Gora - przyszpiesz \n"
+					+ "Gora - przyszpiesz, jesli szybkosc 0 - start aplikacji \n"
 			 		+ "Dol - zwolnij \n"
 					+ "Lewo - wlacz/wylacz kontrolke lewego kierunkowskazu \n"
-			 		+ "Prawo - wlacz/wylacz kontrolke prawego kierunkowskazu"
+			 		+ "Prawo - wlacz/wylacz kontrolke prawego kierunkowskazu\n"
+					+ "Enter - start/pauza aplikacji\n"
 					);
 			 StackPane secondaryLayout = new StackPane();
 	         secondaryLayout.getChildren().add(secondLabel);
-	         Scene secondScene = new Scene(secondaryLayout, 320, 200);
+	         Scene secondScene = new Scene(secondaryLayout, 320, 210);
 	         Stage newWindow = new Stage();
 	         newWindow.setTitle("About");
 	         newWindow.getIcons().add(new Image("warstwaInterfejsu/icon.png"));
@@ -178,7 +180,6 @@ public class Controller  {
 		 });
 		
 		zapiszDoBDButton.setOnAction(event ->{
-				//TEST.setOnAction(event ->{
 					  dbHandler.usunZBD();
 					  dbHandler.zapisacDoBD(deska);
 				System.out.println("Information have been saved"); });
@@ -234,9 +235,6 @@ public class Controller  {
 
 		//wstepne ladowanie widoku
 		refreash();
-		
-		//wlaczenie timera w desce do odswiezania danych
-		deska.start();
 
 		//tworzymy watek do odswiezania widoku co sekunde
 		Timer t1 = new Timer();
@@ -298,8 +296,6 @@ public class Controller  {
 	 */
 	@FXML
 	void handleOnKeyPressed(KeyEvent event) {
-		//System.out.println("Klawisz wcisnieto");
-		// strzalki
 
 		if (event.getCode() == KeyCode.LEFT) {
 
@@ -375,6 +371,11 @@ public class Controller  {
 		
 		if (event.getCode() == KeyCode.UP) {
 		
+			if(deska.getPredkosciomierz().getPredkosc()==0 && !deskaWlaczona)
+			{
+				deska.start();
+				deskaWlaczona = true;
+			}
 			try {
 				deska.getPredkosciomierz().przyspiesz();
 			}
@@ -393,7 +394,6 @@ public class Controller  {
 		}
 		// swiatla 
 		if (event.getCode() == KeyCode.Q) {
-			System.out.println("Q pressed");
 			if (!deska.getSwiatlo(0).getWlaczona())
 				deska.getSwiatlo(0).wlacz();
 
@@ -403,7 +403,6 @@ public class Controller  {
 		}
 
 		if (event.getCode() == KeyCode.E) {
-			System.out.println("E pressed");
 			if (!deska.getSwiatlo(1).getWlaczona())
 				deska.getSwiatlo(1).wlacz();
 
@@ -412,7 +411,6 @@ public class Controller  {
 		}
 
 		if (event.getCode() == KeyCode.Z) {
-			System.out.println("Z pressed");
 			if (!deska.getSwiatlo(2).getWlaczona())
 				deska.getSwiatlo(2).wlacz();
 
@@ -421,7 +419,6 @@ public class Controller  {
 		}
 
 		if (event.getCode() == KeyCode.X) {
-			System.out.println("X pressed");
 			if (!deska.getSwiatlo(3).getWlaczona())
 				deska.getSwiatlo(3).wlacz();
 
@@ -429,7 +426,6 @@ public class Controller  {
 				deska.getSwiatlo(3).wylacz();
 		}
 		if (event.getCode() == KeyCode.C) {
-			System.out.println("C pressed");
 			if (!deska.getSwiatlo(4).getWlaczona())
 				deska.getSwiatlo(4).wlacz();
 
@@ -437,8 +433,21 @@ public class Controller  {
 				deska.getSwiatlo(4).wylacz();
 		}
 		if(event.getCode() == KeyCode.U) {
-			System.out.println("Wyzerowanie licznika przebiegu dziennego");
 			deska.getLicznikPrzebieguDziennego().wyzerujLicznik();
+		}
+		if(event.getCode() == KeyCode.ENTER)
+		{
+			if(!deskaWlaczona)
+			{
+				deskaWlaczona = true;
+				deska.start();
+			}
+			else
+			{
+				deskaWlaczona = false;
+				deska.stop();
+			}
+			
 		}
 
 		refreash();

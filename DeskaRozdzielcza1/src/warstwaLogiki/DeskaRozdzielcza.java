@@ -13,14 +13,15 @@ import warstwaDanych.Predkosciomierz;
  * Klasa służąca do przechowywania wszytskich parametrów deski rozdzielczej.  
  */
 public class DeskaRozdzielcza {
-	Predkosciomierz predkosciomierz;
-	LicznikPrzebieguCalkowitego przebiegCalkowity;
-	LicznikPrzebieguDziennego przebiegDzienny;
+	private Predkosciomierz predkosciomierz;
+	private LicznikPrzebieguCalkowitego przebiegCalkowity;
+	private LicznikPrzebieguDziennego przebiegDzienny;
 	//lewo, prawo
-	ArrayList<KontrolkaKierunkowskazu> strzalki;
-	ArrayList<KontrolkaSwiatel> swiatla;
+	private ArrayList<KontrolkaKierunkowskazu> strzalki;
+	private ArrayList<KontrolkaSwiatel> swiatla;
 	//pozycyjnych, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
-	KomputerPokladowy komputer;
+	private KomputerPokladowy komputer;
+	private Timer t3;
 	
 	/**
 	 * Tworzenie nowej instancji klasy DeskaRozdzielcza, bezparametrowa
@@ -79,9 +80,9 @@ public class DeskaRozdzielcza {
 	 */
 	public void start()
 	{
-		Timer t3 = new Timer();
+		t3 = new Timer();
 		
-		 t3.scheduleAtFixedRate(new TimerTask() {
+		 t3.schedule(new TimerTask() {
 
 			    @Override
 			    public void run() {
@@ -90,15 +91,14 @@ public class DeskaRozdzielcza {
 			    	try {
 						predkosciomierz.zwolnij();
 					} catch (OsiagnietaMinimalnaSzybkoscException e) {
-						e.getMessage();
 					}
 			    }
 
-			},
-			//Set how long before to start calling the TimerTask (in milliseconds)
-			1000,
-			//Set the amount of time between each execution (in milliseconds)
-			1000);
+			},0,1000);
+	}
+	public void stop()
+	{
+		t3.cancel();
 	}
 	
 	/**

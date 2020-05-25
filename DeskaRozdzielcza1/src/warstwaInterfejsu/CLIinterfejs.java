@@ -24,8 +24,7 @@ public class CLIinterfejs extends Thread{
 	 */
 	public CLIinterfejs()
 	{
-		//String wczytajZ = null;
-		//String zapiszDo = null;
+		
 	}
 	
 	/**
@@ -109,7 +108,7 @@ public class CLIinterfejs extends Thread{
 			zapiszDo  = scan.nextLine();
 			
 		}while(!zapiszDo.equals("1") && !zapiszDo.equals("2"));
-		//scan.close();
+		scan.close();
 		
 		
 	}

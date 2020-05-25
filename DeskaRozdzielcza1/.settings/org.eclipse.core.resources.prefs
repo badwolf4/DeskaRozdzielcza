@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
-encoding/<project>=Cp1251
+encoding//src/warstwaDanych/Kontrolka.java=UTF-8
+encoding//src/warstwaDanych/KontrolkaInterface.java=UTF-8
+encoding//src/warstwaDanych/KontrolkaKierunkowskazu.java=UTF-8
+encoding//src/warstwaDanych/KontrolkaSwiatel.java=UTF-8
+encoding//src/warstwaDanych/LicznikPrzebieguCalkowitego.java=UTF-8
+encoding/<project>=UTF-8

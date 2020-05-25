@@ -122,7 +122,6 @@ public void zapisacDoBD(DeskaRozdzielcza deska) {
 				prSt.execute();
 				dbConnection.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
