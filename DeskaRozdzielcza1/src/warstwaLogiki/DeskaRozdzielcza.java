@@ -96,6 +96,10 @@ public class DeskaRozdzielcza {
 
 			},0,1000);
 	}
+	/**
+	 * 
+	 * Zatrzymywanie wątku aktualizującego dane deski w czasie
+	 */
 	public void stop()
 	{
 		t3.cancel();
@@ -188,49 +192,138 @@ public class DeskaRozdzielcza {
 		return komputer;
 	}
 
-	/**
-	 * Zamienia obiekt KontrolkaSwiatel na odpowiedniej pozycji, reprezentujący odpowiednią kontrolkę świateł
-	 * pozycyjnych, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
-	 * @param n pozycja na liście
-	 * @param stan stan nowoutworzonej kontrolki swiatla
-	 */
-	public void setSwiatlo(int n, boolean stan)
+//	/**
+//	 * Zamienia obiekt KontrolkaSwiatel na odpowiedniej pozycji, reprezentujący odpowiednią kontrolkę świateł
+//	 * pozycyjnych, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
+//	 * @param n pozycja na liście
+//	 * @param stan stan nowoutworzonej kontrolki swiatla
+//	 */
+//	public void setSwiatlo(int n, boolean stan)
+//	{
+//		swiatla.set(n, new KontrolkaSwiatel(stan));
+//		
+//	}
+	public void setSwiatlo(Swiatla s, boolean stan)
 	{
-		swiatla.set(n, new KontrolkaSwiatel(stan));
-		
+		switch(s)
+		{
+			case pozycyjne:
+			{
+				swiatla.set(0, new KontrolkaSwiatel(stan));
+				break;
+			}
+			case mijania:
+			{
+				swiatla.set(1, new KontrolkaSwiatel(stan));
+				break;
+			}
+			case drogowe:
+			{
+				swiatla.set(2, new KontrolkaSwiatel(stan));
+				break;
+			}
+			case przeciwmgelnePrzod:
+			{
+				swiatla.set(3, new KontrolkaSwiatel(stan));
+				break;
+			}
+			case przeciwmgelneTyl:
+			{
+				swiatla.set(4, new KontrolkaSwiatel(stan));
+				break;
+			}
+		}
 	}
 	
-	/**
-	 * Zwraca obiekt z ArrayLIst swiatla w kolejności
-	 * pozycyjne, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
-	 * @param n pozycja na liście
-	 * @return KontrolkaSwiatel obiekt z listy
-	 */
-	public KontrolkaSwiatel getSwiatlo(int n)
+//	/**
+//	 * Zwraca obiekt z ArrayLIst swiatla w kolejności
+//	 * pozycyjne, mijania, drogowych, przeciwmgelnychPrzod, przeciwmgelnychTyl
+//	 * @param n pozycja na liście
+//	 * @return KontrolkaSwiatel obiekt z listy
+//	 */
+//	public KontrolkaSwiatel getSwiatlo(int n)
+//	{
+//		return swiatla.get(n);
+//	}
+//	
+	public KontrolkaSwiatel getSwiatlo(Swiatla s)
 	{
-		return swiatla.get(n);
+		switch(s)
+		{
+			case pozycyjne:
+			{
+				return swiatla.get(0);
+			}
+			case mijania:
+			{
+				return swiatla.get(1);
+			}
+			case drogowe:
+			{
+				return swiatla.get(2);
+			}
+			case przeciwmgelnePrzod:
+			{
+				return swiatla.get(3);
+			}
+			case przeciwmgelneTyl:
+			{
+				return swiatla.get(4);
+			}
+		}
+		return swiatla.get(0);
 	}
 	
-	/**
-	 * Zamienia obiekt KontrolkaKierunkowskazu na odpowiedniej pozycji, reprezentujący odpowiednią kotrolkę kirunkowskazu
-	 * w kolejności: lewa, prawa
-	 * @param n pozycja na liście
-	 * @param stan stan kontrolki
-	 */
-	public void setStrzalka(int n, boolean stan)
+//	/**
+//	 * Zamienia obiekt KontrolkaKierunkowskazu na odpowiedniej pozycji, reprezentujący odpowiednią kotrolkę kirunkowskazu
+//	 * w kolejności: lewa, prawa
+//	 * @param n pozycja na liście
+//	 * @param stan stan kontrolki
+//	 */
+//	public void setStrzalka(int n, boolean stan)
+//	{
+//		strzalki.set(n, new KontrolkaKierunkowskazu(stan));
+//	}
+	
+	public void setStrzalka(SwiatlaKierunkowskazow s, boolean stan)
 	{
-		strzalki.set(n, new KontrolkaKierunkowskazu(stan));
+		switch(s) {
+			case lewo:
+			{
+				strzalki.set(0, new KontrolkaKierunkowskazu(stan));
+				break;
+			}
+			case prawo:
+			{
+				strzalki.set(1, new KontrolkaKierunkowskazu(stan));
+				break;
+			}
+		}
 	}
 	
-	/**
-	 * Zwraca obiekt z ArrayLIst strzalki reprezentujące kierunkowskazy w kolejności: lewy, prawy
-	 * @param n pozycja na liście
-	 * @return KontrolkaKierunkowskazu
-	 */
-	public KontrolkaKierunkowskazu getStrzalka(int n)
-	{
-		return strzalki.get(n);
-	}
+//	/**
+//	 * Zwraca obiekt z ArrayLIst strzalki reprezentujące kierunkowskazy w kolejności: lewy, prawy
+//	 * @param n pozycja na liście
+//	 * @return KontrolkaKierunkowskazu
+//	 */
+//	public KontrolkaKierunkowskazu getStrzalka(int n)
+//	{
+//		return strzalki.get(n);
+//	}
 	
+	public KontrolkaKierunkowskazu getStrzalka(SwiatlaKierunkowskazow s)
+	{
+		switch(s) {
+			case lewo:
+			{
+				return strzalki.get(0);
+			}
+			case prawo:
+			{
+				return strzalki.get(1);
+			}
+		}
+		return strzalki.get(0);
+	}
 	
 }

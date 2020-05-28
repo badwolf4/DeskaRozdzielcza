@@ -27,6 +27,8 @@ import warstwaLogiki.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
+import warstwaLogiki.Swiatla;
+import warstwaLogiki.SwiatlaKierunkowskazow;
 import warstwaLogiki.XMLReaderWriter;
 
 /**
@@ -247,7 +249,7 @@ public class Controller  {
 		}, 1000, 1000);
 		
 		//wlaczenie kierunkowskazow w gui jesli byl odczytany stan jako wlaczony
-		if(deska.getStrzalka(0).getWlaczona())
+		if(deska.getStrzalka(SwiatlaKierunkowskazow.lewo).getWlaczona())
 		{
 			lewyWlaczony = true;
 			t = new Timer();
@@ -268,7 +270,7 @@ public class Controller  {
 			lewaStrzalka.setFill(Color.WHITE);
 		}
 		
-		if(deska.getStrzalka(1).getWlaczona())
+		if(deska.getStrzalka(SwiatlaKierunkowskazow.prawo).getWlaczona())
 		{
 			t = new Timer();
 			prawyWlaczony = true;
@@ -300,7 +302,7 @@ public class Controller  {
 		if (event.getCode() == KeyCode.LEFT) {
 
 			if (!lewyWlaczony && !prawyWlaczony) {
-				deska.getStrzalka(0).wlacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.lewo).wlacz();
 				t = new Timer();
 
 				lewyWlaczony = true;
@@ -323,8 +325,8 @@ public class Controller  {
 			else {
 				t.cancel();
 				t.purge();
-				deska.getStrzalka(0).wylacz();
-				deska.getStrzalka(1).wylacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.lewo).wylacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.prawo).wylacz();
 				prawyWlaczony = false;
 				lewyWlaczony = false;
 				lewaStrzalka.setFill(Color.WHITE);
@@ -335,7 +337,7 @@ public class Controller  {
 
 		if (event.getCode() == KeyCode.RIGHT) {
 			if (!prawyWlaczony && !lewyWlaczony) {
-				deska.getStrzalka(1).wlacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.prawo).wlacz();
 
 				t = new Timer();
 				prawyWlaczony = true;
@@ -360,8 +362,8 @@ public class Controller  {
 			else {
 				t.cancel();
 				t.purge();
-				deska.getStrzalka(0).wylacz();
-				deska.getStrzalka(1).wylacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.lewo).wylacz();
+				deska.getStrzalka(SwiatlaKierunkowskazow.prawo).wylacz();
 				prawyWlaczony = false;
 				lewyWlaczony = false;
 				lewaStrzalka.setFill(Color.WHITE);
@@ -394,43 +396,43 @@ public class Controller  {
 		}
 		// swiatla 
 		if (event.getCode() == KeyCode.Q) {
-			if (!deska.getSwiatlo(0).getWlaczona())
-				deska.getSwiatlo(0).wlacz();
+			if (!deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona())
+				deska.getSwiatlo(Swiatla.pozycyjne).wlacz();
 
 			else
-				deska.getSwiatlo(0).wylacz();
+				deska.getSwiatlo(Swiatla.pozycyjne).wylacz();
 
 		}
 
 		if (event.getCode() == KeyCode.E) {
-			if (!deska.getSwiatlo(1).getWlaczona())
-				deska.getSwiatlo(1).wlacz();
+			if (!deska.getSwiatlo(Swiatla.mijania).getWlaczona())
+				deska.getSwiatlo(Swiatla.mijania).wlacz();
 
 			else
-				deska.getSwiatlo(1).wylacz();
+				deska.getSwiatlo(Swiatla.mijania).wylacz();
 		}
 
 		if (event.getCode() == KeyCode.Z) {
-			if (!deska.getSwiatlo(2).getWlaczona())
-				deska.getSwiatlo(2).wlacz();
+			if (!deska.getSwiatlo(Swiatla.drogowe).getWlaczona())
+				deska.getSwiatlo(Swiatla.drogowe).wlacz();
 
 			else
-				deska.getSwiatlo(2).wylacz();
+				deska.getSwiatlo(Swiatla.drogowe).wylacz();
 		}
 
 		if (event.getCode() == KeyCode.X) {
-			if (!deska.getSwiatlo(3).getWlaczona())
-				deska.getSwiatlo(3).wlacz();
+			if (!deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona())
+				deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).wlacz();
 
 			else
-				deska.getSwiatlo(3).wylacz();
+				deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).wylacz();
 		}
 		if (event.getCode() == KeyCode.C) {
-			if (!deska.getSwiatlo(4).getWlaczona())
-				deska.getSwiatlo(4).wlacz();
+			if (!deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona())
+				deska.getSwiatlo(Swiatla.przeciwmgelneTyl).wlacz();
 
 			else
-				deska.getSwiatlo(4).wylacz();
+				deska.getSwiatlo(Swiatla.przeciwmgelneTyl).wylacz();
 		}
 		if(event.getCode() == KeyCode.U) {
 			deska.getLicznikPrzebieguDziennego().wyzerujLicznik();
@@ -453,9 +455,10 @@ public class Controller  {
 		refreash();
 
 	}
-	
 	/**
-	 * Odświeżenie zawartości elementów okienka
+	 * Formatowanie czasu. Przekształcanie z sekund do łańcuchu do wyświetlania na ekranie
+	 * @param totalSecs czas w sekundach
+	 * @return String
 	 */
 	
 	public String timeString(int totalSecs) {
@@ -464,7 +467,9 @@ public class Controller  {
 		int seconds = totalSecs % 60;
 		return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
-
+	/**
+	 * Odświeżenie zawartości elementów okienka
+	 */
 	void refreash() {
 		przebiegCalkowity.setText(Double.toString(bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg())));
 
@@ -482,27 +487,27 @@ public class Controller  {
 
 		predkosc.setText(Integer.toString((int)Math.round(deska.getPredkosciomierz().getPredkosc())));
 
-		if (deska.getSwiatlo(0).getWlaczona())
+		if (deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona())
 			swiatloDrogowe.setFill(Color.GREEN);
 		else
 			swiatloDrogowe.setFill(Color.WHITE);
 
-		if (deska.getSwiatlo(1).getWlaczona())
+		if (deska.getSwiatlo(Swiatla.mijania).getWlaczona())
 			swiatloMijania.setFill(Color.GREEN);
 		else
 			swiatloMijania.setFill(Color.WHITE);
 
-		if (deska.getSwiatlo(2).getWlaczona())
+		if (deska.getSwiatlo(Swiatla.drogowe).getWlaczona())
 			swiatloPrzod.setFill(Color.GREEN);
 		else
 			swiatloPrzod.setFill(Color.WHITE);
 
-		if (deska.getSwiatlo(3).getWlaczona())
+		if (deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona())
 			swiatloTyl.setFill(Color.GREEN);
 		else
 			swiatloTyl.setFill(Color.WHITE);
 
-		if (deska.getSwiatlo(4).getWlaczona())
+		if (deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona())
 			swiatloPozycyjne.setFill(Color.GREEN);
 		else
 			swiatloPozycyjne.setFill(Color.WHITE);

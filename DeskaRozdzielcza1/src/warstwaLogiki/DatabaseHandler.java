@@ -52,13 +52,13 @@ public DeskaRozdzielcza wczytajZBD() {
 		deska.setLicznikPrzebieguCalkowitego(new LicznikPrzebieguCalkowitego(rs.getDouble(2)));
 		
 		deska.setLicznikPrzebieguDziennego(new LicznikPrzebieguDziennego(rs.getDouble(3)));
-		deska.setStrzalka(0, rs.getBoolean(4));
-		deska.setStrzalka(1, rs.getBoolean(5));
-		deska.setSwiatlo(0, rs.getBoolean(6));
-		deska.setSwiatlo(1, rs.getBoolean(7));
-		deska.setSwiatlo(2, rs.getBoolean(8));
-		deska.setSwiatlo(3, rs.getBoolean(9));
-		deska.setSwiatlo(4, rs.getBoolean(10));
+		deska.setStrzalka(SwiatlaKierunkowskazow.lewo, rs.getBoolean(4));
+		deska.setStrzalka(SwiatlaKierunkowskazow.prawo, rs.getBoolean(5));
+		deska.setSwiatlo(Swiatla.pozycyjne, rs.getBoolean(6));
+		deska.setSwiatlo(Swiatla.mijania, rs.getBoolean(7));
+		deska.setSwiatlo(Swiatla.drogowe, rs.getBoolean(8));
+		deska.setSwiatlo(Swiatla.przeciwmgelnePrzod, rs.getBoolean(9));
+		deska.setSwiatlo(Swiatla.przeciwmgelneTyl, rs.getBoolean(10));
 		
 		deska.setKomputerPokladowy(new KomputerPokladowy());
 		deska.getKomputerPokladowy().setPredkoscSrednia(rs.getDouble(11));
@@ -107,13 +107,13 @@ public void zapisacDoBD(DeskaRozdzielcza deska) {
 				prSt.setString(1, Double.toString(deska.getPredkosciomierz().getPredkosc()));
 				prSt.setString(2, Double.toString(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
 				prSt.setString(3, Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
-				prSt.setBoolean(4, deska.getStrzalka(0).getWlaczona());
-				prSt.setBoolean(5, deska.getStrzalka(1).getWlaczona());
-				prSt.setBoolean(6, deska.getSwiatlo(0).getWlaczona());
-				prSt.setBoolean(7, deska.getSwiatlo(1).getWlaczona());
-				prSt.setBoolean(8, deska.getSwiatlo(2).getWlaczona());
-				prSt.setBoolean(9, deska.getSwiatlo(3).getWlaczona());
-				prSt.setBoolean(10,deska.getSwiatlo(4).getWlaczona());
+				prSt.setBoolean(4, deska.getStrzalka(SwiatlaKierunkowskazow.lewo).getWlaczona());
+				prSt.setBoolean(5, deska.getStrzalka(SwiatlaKierunkowskazow.prawo).getWlaczona());
+				prSt.setBoolean(6, deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona());
+				prSt.setBoolean(7, deska.getSwiatlo(Swiatla.mijania).getWlaczona());
+				prSt.setBoolean(8, deska.getSwiatlo(Swiatla.drogowe).getWlaczona());
+				prSt.setBoolean(9, deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona());
+				prSt.setBoolean(10,deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona());
 				prSt.setString(11, Double.toString(deska.getKomputerPokladowy().getPredkoscSrednia()));
 				prSt.setString(12, Double.toString(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
 				prSt.setString(13, Double.toString(deska.getKomputerPokladowy().getCzasPodrozy()));

@@ -9,6 +9,8 @@ import warstwaLogiki.DatabaseHandler;
 import warstwaLogiki.DeskaRozdzielcza;
 import warstwaLogiki.OsiagnietaMaksymalnaSzybkoscException;
 import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
+import warstwaLogiki.Swiatla;
+import warstwaLogiki.SwiatlaKierunkowskazow;
 import warstwaLogiki.XMLReaderWriter;
 
 /**
@@ -124,21 +126,42 @@ public class CLIinterfejs extends Thread{
 		System.out.println("Przebieg dzienny: " + bd(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
 		System.out.println("Przebieg calkowity: " + bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
 		ArrayList<String> swiatla = new ArrayList<String>(); 
-		for( int i = 0; i < 2; i++)
-		{
-			if(deska.getStrzalka(i).getWlaczona())
-				swiatla.add("wlaczony");
-			else
-				swiatla.add("wylaczony");
-		}
 		
-		for( int i = 0; i < 5; i++)
-		{
-			if(deska.getSwiatlo(i).getWlaczona())
-				swiatla.add("wlaczony");
-			else
-				swiatla.add("wylaczony");
-		}
+		if(deska.getStrzalka(SwiatlaKierunkowskazow.lewo).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
+		if(deska.getStrzalka(SwiatlaKierunkowskazow.prawo).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		////////
+		if(deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
+		if(deska.getSwiatlo(Swiatla.mijania).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
+		if(deska.getSwiatlo(Swiatla.drogowe).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
+		if(deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
+		if(deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona())
+			swiatla.add("wlaczony");
+		else
+			swiatla.add("wylaczony");
+		
 		System.out.println("Kierunkowskaz lewo: " + swiatla.get(0));
 		System.out.println("Kierunkowskaz prawo: " + swiatla.get(1));
 
@@ -218,98 +241,98 @@ public class CLIinterfejs extends Thread{
 				}
 			case "a":
 				{
-					if(deska.getStrzalka(0).getWlaczona())
+					if(deska.getStrzalka(SwiatlaKierunkowskazow.lewo).getWlaczona())
 						{
-							deska.getStrzalka(0).wylacz();
+							deska.getStrzalka(SwiatlaKierunkowskazow.lewo).wylacz();
 							System.out.println("Lewy kierunkowskaz: wylaczony");
 						}
 					else
 						{
-							deska.getStrzalka(0).wlacz();
+							deska.getStrzalka(SwiatlaKierunkowskazow.lewo).wlacz();
 							System.out.println("Lewy kierunkowskaz: wlaczony");
 						}
 					break;
 				}
 			case "d":
 				{
-					if(deska.getStrzalka(1).getWlaczona())
+					if(deska.getStrzalka(SwiatlaKierunkowskazow.prawo).getWlaczona())
 					{
-						deska.getStrzalka(1).wylacz();
+						deska.getStrzalka(SwiatlaKierunkowskazow.prawo).wylacz();
 						System.out.println("Prawy kierunkowskaz: wylaczony");
 					}
 				else
 					{
-						deska.getStrzalka(1).wlacz();
+						deska.getStrzalka(SwiatlaKierunkowskazow.prawo).wlacz();
 						System.out.println("Prawy kierunkowskaz: wlaczony");
 					}
 					break;
 				}
 			case "q":
 				{
-					if(deska.getSwiatlo(0).getWlaczona())
+					if(deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona())
 					{
-						deska.getSwiatlo(0).wylacz();
+						deska.getSwiatlo(Swiatla.pozycyjne).wylacz();
 						System.out.println("Swiatla pozycyjne: wylaczony");
 					}
 				else
 					{
-						deska.getSwiatlo(0).wlacz();
+						deska.getSwiatlo(Swiatla.pozycyjne).wlacz();
 						System.out.println("Swiatla pozycyjne: wlaczony");
 					}
 					break;
 				}
 			case "e":
 				{
-					if(deska.getSwiatlo(1).getWlaczona())
+					if(deska.getSwiatlo(Swiatla.mijania).getWlaczona())
 					{
-						deska.getSwiatlo(1).wylacz();
+						deska.getSwiatlo(Swiatla.mijania).wylacz();
 						System.out.println("Swiatla mijania: wylaczony");
 					}
 				else
 					{
-						deska.getSwiatlo(1).wlacz();
+						deska.getSwiatlo(Swiatla.mijania).wlacz();
 						System.out.println("Swiatla mijania: wlaczony");
 					}
 					break;
 				}
 			case "z":
 				{
-					if(deska.getSwiatlo(2).getWlaczona())
+					if(deska.getSwiatlo(Swiatla.drogowe).getWlaczona())
 					{
-						deska.getSwiatlo(2).wylacz();
+						deska.getSwiatlo(Swiatla.drogowe).wylacz();
 						System.out.println("Swiatla drogowe: wylaczony");
 					}
 				else
 					{
-						deska.getSwiatlo(2).wlacz();
+						deska.getSwiatlo(Swiatla.drogowe).wlacz();
 						System.out.println("Swiatla drogowe: wlaczony");
 					}
 					break;
 				}
 			case "x":
 				{
-					if(deska.getSwiatlo(3).getWlaczona())
+					if(deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona())
 					{
-						deska.getSwiatlo(3).wylacz();
+						deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).wylacz();
 						System.out.println("Przeciwmgielne przod: wylaczony");
 					}
 				else
 					{
-						deska.getSwiatlo(3).wlacz();
+						deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).wlacz();
 						System.out.println("Przeciwmgielne przod: wlaczony");
 					}
 					break;
 				}
 			case "c":
 				{
-					if(deska.getSwiatlo(4).getWlaczona())
+					if(deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona())
 					{
-						deska.getSwiatlo(4).wylacz();
+						deska.getSwiatlo(Swiatla.przeciwmgelneTyl).wylacz();
 						System.out.println("Przeciwmgielne tyl: wylaczony");
 					}
 				else
 					{
-						deska.getSwiatlo(4).wlacz();
+						deska.getSwiatlo(Swiatla.przeciwmgelneTyl).wlacz();
 						System.out.println("Przeciwmgielne tyl: wlaczony");
 					}
 					break;

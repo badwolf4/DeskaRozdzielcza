@@ -102,7 +102,7 @@ public class XMLReaderWriter {
                        
                             else
                             	stan = false;
-                            deska.setStrzalka(0,stan);     
+                            deska.setStrzalka(SwiatlaKierunkowskazow.lewo,stan);     
                             continue;
                         }
                     }
@@ -114,7 +114,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setStrzalka(1,stan);     
+                            deska.setStrzalka(SwiatlaKierunkowskazow.prawo,stan);     
                             continue;
                         }
                     }
@@ -126,7 +126,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setSwiatlo(0, stan);     
+                            deska.setSwiatlo(Swiatla.pozycyjne, stan);     
                             continue;
                         }
                     }
@@ -138,7 +138,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setSwiatlo(1, stan);     
+                            deska.setSwiatlo(Swiatla.mijania, stan);     
                             continue;
                         }
                     }
@@ -150,7 +150,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setSwiatlo(2, stan);     
+                            deska.setSwiatlo(Swiatla.drogowe, stan);     
                             continue;
                         }
                     }
@@ -164,7 +164,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setSwiatlo(3, stan);     
+                            deska.setSwiatlo(Swiatla.przeciwmgelnePrzod, stan);     
                             continue;
                         }
                     }
@@ -176,7 +176,7 @@ public class XMLReaderWriter {
                             	stan = true;
                             else
                             	stan = false;
-                            deska.setSwiatlo(4,stan);     
+                            deska.setSwiatlo(Swiatla.przeciwmgelneTyl,stan);     
                             continue;
                         }
                     }
@@ -278,25 +278,25 @@ public class XMLReaderWriter {
 		createNode(eventWriter,"przebieg_dzienny", Double.toString(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
 		
 		//<lewy_kierunkowskaz> stan </lewy_kierunkowskaz>
-		createNode(eventWriter,"lewy_kierunkowskaz", Boolean.toString(deska.getStrzalka(0).getWlaczona()));
+		createNode(eventWriter,"lewy_kierunkowskaz", Boolean.toString(deska.getStrzalka(SwiatlaKierunkowskazow.lewo).getWlaczona()));
 		
 		//<prawy_kierunkowskaz> stan </prawy_kierunkowskaz>
-		createNode(eventWriter,"prawy_kierunkowskaz", Boolean.toString(deska.getStrzalka(1).getWlaczona()));
+		createNode(eventWriter,"prawy_kierunkowskaz", Boolean.toString(deska.getStrzalka(SwiatlaKierunkowskazow.prawo).getWlaczona()));
 		
 		//<kontrolka_swiatel_pozycyjnych> stan </kontrolka_swiatel_pozycyjnych>
-		createNode(eventWriter,"kontrolka_swiatel_pozycyjnych", Boolean.toString(deska.getSwiatlo(0).getWlaczona()));
+		createNode(eventWriter,"kontrolka_swiatel_pozycyjnych", Boolean.toString(deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona()));
 		
 		//<kontrolka_swiatel_mijania> stan </kontrolka_swiatel_mijania>
-		createNode(eventWriter,"kontrolka_swiatel_mijania", Boolean.toString(deska.getSwiatlo(1).getWlaczona()));
+		createNode(eventWriter,"kontrolka_swiatel_mijania", Boolean.toString(deska.getSwiatlo(Swiatla.mijania).getWlaczona()));
 		
 		//<kontrolka_swiatel_drogowych> stan </kontrolka_swiatel_drogowych>
-		createNode(eventWriter,"kontrolka_swiatel_drogowych", Boolean.toString(deska.getSwiatlo(2).getWlaczona()));
+		createNode(eventWriter,"kontrolka_swiatel_drogowych", Boolean.toString(deska.getSwiatlo(Swiatla.drogowe).getWlaczona()));
 		
 		//<kontrolka_swiatel_przeciwmgielnych_przod> stan </kontrolka_swiatel_przeciwmgielnych_przod>
-		createNode(eventWriter,"kontrolka_swiatel_przeciwmgielnych_przod", Boolean.toString(deska.getSwiatlo(3).getWlaczona()));
+		createNode(eventWriter,"kontrolka_swiatel_przeciwmgielnych_przod", Boolean.toString(deska.getSwiatlo(Swiatla.przeciwmgelnePrzod).getWlaczona()));
 		
 		//<kontrolka_swiatel_przeciwmgielnych_tyl> stan </kontrolka_swiatel_przeciwmgielnych_tyl>
-		createNode(eventWriter,"kontrolka_swiatel_przeciwmgielnych_tyl", Boolean.toString(deska.getSwiatlo(4).getWlaczona()));
+		createNode(eventWriter,"kontrolka_swiatel_przeciwmgielnych_tyl", Boolean.toString(deska.getSwiatlo(Swiatla.przeciwmgelneTyl).getWlaczona()));
 		
 		eventWriter.add(tab);
 		//<komputer_pokladowy> 
