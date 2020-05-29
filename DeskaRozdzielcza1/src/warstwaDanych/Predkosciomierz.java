@@ -8,7 +8,7 @@ import warstwaLogiki.OsiagnietaMinimalnaSzybkoscException;
  * Klasa reprezentująca prędkościomierz samochodu
  */
 public class Predkosciomierz {
-	protected double predkosc;
+	private double predkosc;
 
 	/**
 	 * Tworzenie nowej instancji obiektu klasy Predkosciomierz
