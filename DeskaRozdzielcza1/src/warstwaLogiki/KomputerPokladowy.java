@@ -52,20 +52,20 @@ public class KomputerPokladowy {
 	 */
 	public void refreashKomputer(double sekundy, double godziny, double dystans1, double predkosc)
 	{
-		
-		setCzasPodrozy(getCzasPodrozy()+sekundy);
-    	setDystans(getDystans()+ dystans1);
-    	setPredkoscSrednia(getDystans()/(getCzasPodrozy()/3600));
-    	if(getPredkoscMaksymalna() < predkosc)
-    		setPredkoscMaksymalna(predkosc);
+		czasPodrozy+=sekundy; //стало
+    	dystans += dystans1;
+    	predkoscSrednia=(dystans/(czasPodrozy/3600));
+    	if(predkoscMaksymalna < predkosc)
+    	predkoscMaksymalna=predkosc;
     	pomiar++;
     	pomiaryPredkosci.add(predkosc);
     	if(pomiar==60)
     	{
-    		setSrednieSpalanie(obliczSpalanie());
+    		srednieSpalanie=obliczSpalanie();
     	}
     	
 	}
+	
 	private int pomiar=0;
 	private ArrayList<Double> pomiaryPredkosci;
 	private ArrayList<Double> srednieSpalania;

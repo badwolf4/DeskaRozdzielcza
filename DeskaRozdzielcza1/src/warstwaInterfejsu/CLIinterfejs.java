@@ -49,7 +49,7 @@ public class CLIinterfejs extends Thread{
 		
 		deska.start();
 		do {
-			System.out.println("------Menu--------");
+			System.out.println("\n------Menu--------");
 			
 			System.out.println("1 - pokaz stan deski");
 			System.out.println("2 - przejdz do trybu edycji");
@@ -63,9 +63,6 @@ public class CLIinterfejs extends Thread{
 				pokazStanDeski();
 			if(wybor.equals("2"))
 				trybEdycji();
-			//if(wybor.equals("3"))
-				//1
-			//System.exit(0);
 		}while(!wybor.equals("3"));
 		
 		if(zapiszDo.equals("1"))
@@ -94,7 +91,7 @@ public class CLIinterfejs extends Thread{
 	{
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("--------Menu---------");
+		System.out.println("\n--------Menu---------");
 		System.out.println("1 - Wczytaj z XML");
 		System.out.println("2 - Wczytaj z bazy danych");
 		do
@@ -110,9 +107,6 @@ public class CLIinterfejs extends Thread{
 			zapiszDo  = scan.nextLine();
 			
 		}while(!zapiszDo.equals("1") && !zapiszDo.equals("2"));
-		scan.close();
-		
-		
 	}
 	
 	/**
@@ -121,7 +115,7 @@ public class CLIinterfejs extends Thread{
 	
 	public void pokazStanDeski()
 	{
-		System.out.println("---------Deska Rozdzielcza------------");
+		System.out.println("\n---------Deska Rozdzielcza------------");
 		System.out.println("Predkosc: " + (int)Math.abs(deska.getPredkosciomierz().getPredkosc()));
 		System.out.println("Przebieg dzienny: " + bd(deska.getLicznikPrzebieguDziennego().getPrzebieg()));
 		System.out.println("Przebieg calkowity: " + bd(deska.getLicznikPrzebieguCalkowitego().getPrzebieg()));
@@ -136,7 +130,7 @@ public class CLIinterfejs extends Thread{
 			swiatla.add("wlaczony");
 		else
 			swiatla.add("wylaczony");
-		////////
+		
 		if(deska.getSwiatlo(Swiatla.pozycyjne).getWlaczona())
 			swiatla.add("wlaczony");
 		else
@@ -165,11 +159,6 @@ public class CLIinterfejs extends Thread{
 		System.out.println("Kierunkowskaz lewo: " + swiatla.get(0));
 		System.out.println("Kierunkowskaz prawo: " + swiatla.get(1));
 
-		System.out.println("Swiatla drogowe: " + swiatla.get(2));
-		System.out.println("Swiatla mijania: " + swiatla.get(3));
-		System.out.println("Swiatla przeciwmgielne przod: " + swiatla.get(4));
-		System.out.println("Swiatla przeciwmgelne tyl: " + swiatla.get(5));
-		System.out.println("Swiatla pozycyjne: " + swiatla.get(6));
 
 		System.out.println("Swiatla pozycyjne: " + swiatla.get(2));
 		System.out.println("Swiatla mijania: " + swiatla.get(3));
@@ -178,7 +167,7 @@ public class CLIinterfejs extends Thread{
 		System.out.println("Swiatla przeciwmgelne tyl: " + swiatla.get(6));
 
 		
-		System.out.println("----Komputer pokladowy-------");
+		System.out.println("\n----Komputer pokladowy-------");
 		System.out.println("Predkosc srednia: " + bd(deska.getKomputerPokladowy().getPredkoscSrednia()));
 		System.out.println("Predkosc maksymalna: " + (int)Math.abs(deska.getKomputerPokladowy().getPredkoscMaksymalna()));
 		System.out.println("Czas podrozy: " + bd(deska.getKomputerPokladowy().getCzasPodrozy()));
@@ -342,18 +331,14 @@ public class CLIinterfejs extends Thread{
 				wypiszPomoc();
 				break;
 			}
-			case "p":
-			{
-				return;
-				//break;
-			}
+		
 			default:
 				{
 					break;
 				}
 			}
 		}while(!wybor.equals("p"));
-		scan.close();
+		return;
 	}
 	
 	/**
