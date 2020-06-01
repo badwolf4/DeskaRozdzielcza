@@ -52,7 +52,7 @@ public class KomputerPokladowy {
 	 */
 	public void refreashKomputer(double sekundy, double godziny, double dystans1, double predkosc)
 	{
-		czasPodrozy+=sekundy; //стало
+		czasPodrozy+=sekundy;
     	dystans += dystans1;
     	predkoscSrednia=(dystans/(czasPodrozy/3600));
     	if(predkoscMaksymalna < predkosc)
